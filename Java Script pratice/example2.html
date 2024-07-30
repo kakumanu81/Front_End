@@ -1,0 +1,20 @@
+<!-- Document.querryselector-->
+<!DOCTYPE html>
+<html>
+   <head>
+       <title>ElementId</title>
+
+   </head>
+   <body>
+       <input type="text" id="a">
+       <button onclick="getvalue()">Click Me</button>
+       <script>
+           function getvalue(){
+               var x = document.querySelector("#a")
+               var y = x.value;
+               console.log(y);
+           }
+       </script>
+
+   </body>
+</html>

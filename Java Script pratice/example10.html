@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="a">
+            Hello World
+        </div>
+        <button onclick="fun1()">click me</button>
+        <script>
+            function fun1(){
+                var data = "orginal content";
+                document.getElementById("a").innerHTML= `<h1>${data}<h1>`
+            }
+        </script>
+    </body>
+</html>

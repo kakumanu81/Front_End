@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input type="text" id="sample" value="orginal value">
+        <button onclick="getvalue()">click me</button>
+        <script>
+            function getvalue(){
+                var x = document.getElementById("sample").value = "Default value";
+                console.log(x);
+            }
+        </script>
+    </body>
+</html>

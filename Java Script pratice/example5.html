@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form id="a">
+            <input type="text" name="username">
+            <br>
+            <input type="email" name="email">
+            <br>
+            <input type="password" name="pass">
+            <br>
+            <br>
+            <button onclick="getvalues(); return false;">click me</button>
+
+        </form>
+        <script>
+            function getvalues(){
+            var x = document.getElementById("a");
+            var b = new FormData(x);
+            for(var values of b.entries()){
+                console.log(values[0] + " : " + values[1])
+            }
+            }
+        </script>
+    </body>
+</html>

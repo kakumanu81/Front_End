@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .a{
+                text-align: center;
+                padding: 20px;
+                background-color: orange;
+                border: color(black);
+                border-radius: 40px;
+                height: auto;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="a" id="demo1">Original content</h1>
+        <button onclick="Clicked()">click me if you want change</button>
+        <script>
+            function Clicked(){
+                var x = document.getElementById("demo1");
+                x.innerHTML = "New content";
+            }
+        </script>
+    </body>
+</html>

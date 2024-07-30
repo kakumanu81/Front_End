@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        <title>document.forms</title>
+    </head>
+    <body>
+        <form name="details">
+            <input type="text" name="username">
+            <br>
+            <input type="password" name="pass">
+            <br>
+            <br>
+            <button onclick="getvalue(); return false;">Click me</button>
+            <script>
+                function getvalue(){
+                    var x = document.forms['details']['username'];
+                    var name = x.value;
+                    var y = document.forms['details']['pass'];
+                    var password = y.value;
+                    console.log(name);
+                    console.log(password);
+                }
+            </script>
+        </form>
+    </body>
+</html>
