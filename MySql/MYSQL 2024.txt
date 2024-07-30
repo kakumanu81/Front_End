@@ -1,0 +1,339 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 32
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use codegnan;
+Database changed
+mysql> show tabales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tabales' at line 1
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_codegnan |
++--------------------+
+| codegnan_emp       |
++--------------------+
+1 row in set (0.03 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
++--------+-----------+----------+------+------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> -- LOCK
+mysql> ^C
+mysql>
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_codegnan |
++--------------------+
+| codegnan_emp       |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> USE CODEGNAN_EMP;
+ERROR 1049 (42000): Unknown database 'codegnan_emp'
+mysql> INSERT CODEGNAN_EMP (EMP_ID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    -> VALUES
+    -> ('EOO1','SAUKE','UCHIHA',30,'2023-03-01','453 SGF ST','HR'),
+    -> ('EOO2','ITACHI','UCHIHA',35,'2023-04-12','564 KGF ST','CM');
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   30 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> -- LOOK
+mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP WHERE EMI_ID = 'EOO1' FOR UPDATE;
+ERROR 1054 (42S22): Unknown column 'EMI_ID' in 'where clause'
+mysql> SELECT * FROM CODEGNAN_EMP WHERE EMP_ID = 'EOO1' FOR UPDATE;
++--------+-----------+----------+------+------------+------------+------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT |
++--------+-----------+----------+------+------------+------------+------+
+| EOO1   | SAUKE     | UCHIHA   |   30 | 2023-03-01 | 453 SGF ST | HR   |
++--------+-----------+----------+------+------------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE CODEGANA_EMP SET AGE = 25 WHERE EMP_ID = 'EOO1';
+ERROR 1146 (42S02): Table 'codegnan.codegana_emp' doesn't exist
+mysql> UPDATE CODEGNAN_EMP SET AGE = 40 WHERE EMP_ID = 'EOO1';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   40 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> -- ROLLBACK
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE CODEGNAN_EMP SET AGE = 50  WHERE EMP_ID = 'EOO1';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   50 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT CODEGNAN_EMP (EMP_ID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    -> VALUES
+    -> ('EOO4','NARUTO','UZUMAKI',30,'2023-03-01','453 LEF ST','TL');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   50 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
+| EOO4   | NARUTO    | UZUMAKI  |   30 | 2023-03-01 | 453 LEF ST | TL      |
++--------+-----------+----------+------+------------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   40 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   40 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> -- SAVEPOINT
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE CADEGNAN_EMP SET AGE = 20 WHERE EMP_ID = 'EOO1';
+ERROR 1146 (42S02): Table 'codegnan.cadegnan_emp' doesn't exist
+mysql> UPDATE CODEGNAN_EMP SET AGE = 20 WHERE EMP_ID = 'EOO1';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   20 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SAVEPOINT MY_SAVEPOINT;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> ROLLBACK SAVEPOINT MY_SAVEPOINT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SAVEPOINT MY_SAVEPOINT' at line 1
+mysql> ROLLBACK TO SAVEPOINT MY_SAVEPOINT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   20 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> -- SELECT
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   20 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT EMP_ID, FIRSTNAME, LASTNAME, AGE, DEPT FROM CODEGNAN_EMP;
++--------+-----------+----------+------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DEPT    |
++--------+-----------+----------+------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   20 | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | CM      |
++--------+-----------+----------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP WHERE AGE > 20;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 33
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE CODEGNAN;
+Database changed
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_codegnan |
++--------------------+
+| codegnan_emp       |
++--------------------+
+1 row in set (0.06 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP;
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   40 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP WHERE AGE = 35;
++--------+-----------+----------+------+------------+------------+------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT |
++--------+-----------+----------+------+------------+------------+------+
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM   |
++--------+-----------+----------+------+------------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP WHERE DEPT = 'FINANCE';
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
++--------+-----------+----------+------+------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP WHERE DOJ >= '2023-01-23';
++--------+-----------+----------+------+------------+------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT    |
++--------+-----------+----------+------+------------+------------+---------+
+| EOO3   | BOB       | JOHNSON  |   23 | 2023-01-23 | 543 SDF ST | FINANCE |
+| EOO1   | SAUKE     | UCHIHA   |   40 | 2023-03-01 | 453 SGF ST | HR      |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM      |
++--------+-----------+----------+------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP WHERE DOJ >= '2023-02-23';
++--------+-----------+----------+------+------------+------------+------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT |
++--------+-----------+----------+------+------------+------------+------+
+| EOO1   | SAUKE     | UCHIHA   |   40 | 2023-03-01 | 453 SGF ST | HR   |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM   |
++--------+-----------+----------+------+------------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP WHERE DEPT = 'CM' AND AGE = 35;
++--------+-----------+----------+------+------------+------------+------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT |
++--------+-----------+----------+------+------------+------------+------+
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM   |
++--------+-----------+----------+------+------------+------------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM CODEGNAN_EMP WHERE AGE BETWEEN 30 AND 40;
++--------+-----------+----------+------+------------+------------+------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS    | DEPT |
++--------+-----------+----------+------+------------+------------+------+
+| EOO1   | SAUKE     | UCHIHA   |   40 | 2023-03-01 | 453 SGF ST | HR   |
+| EOO2   | ITACHI    | UCHIHA   |   35 | 2023-04-12 | 564 KGF ST | CM   |
++--------+-----------+----------+------+------------+------------+------+
+2 rows in set (0.03 sec)
+
+mysql>

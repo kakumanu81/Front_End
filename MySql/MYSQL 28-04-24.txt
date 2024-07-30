@@ -1,0 +1,688 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 36
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.02 sec)
+
+mysql> CREATE DATABASE CRICKET_RECORDS;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| cricket_records    |
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> USE CRICKET_RECORDS;
+Database changed
+mysql> CREATE TABLE PLAYERS(EMP_ID CHAR(10),
+    -> FNAME VARCHAR(50),
+    -> LNAME VARCHAR(50),
+    -> AGE INT,
+    -> DEBUT VARCHAR(50),
+    -> INNINGS INT,
+    -> HIGHEST INT);
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> SHOW TABLE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> DESC PLAYERS;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EMP_ID  | char(10)    | YES  |     | NULL    |       |
+| FNAME   | varchar(50) | YES  |     | NULL    |       |
+| LNAME   | varchar(50) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| DEBUT   | varchar(50) | YES  |     | NULL    |       |
+| INNINGS | int         | YES  |     | NULL    |       |
+| HIGHEST | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE PLAYERS
+    -> RENAME FNAME TO FIRSTNAME;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TO FIRSTNAME' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> RENAME COLUMN FNAME TO FIRSTNAME;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC PLAYERS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LNAME     | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | varchar(50) | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| HIGHEST   | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE PLAYERS
+    -> CHANGE COLUMN LNAME LASTNAME VARCHAR(60);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC PLAYERS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | varchar(50) | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| HIGHEST   | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.05 sec)
+
+mysql> ALTER TABLE PLAYERS
+    -> CHANGE COLUMN DEBUT DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> CHANGE COLUMN DEBUT VARCHAR(50) DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VARCHAR(50) DATE' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> RENAME COLUMN DEBUT VARCHAR(50) TO DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VARCHAR(50) TO DATE' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> RENAME COLUMN DEBUT VARCHAR(50) TO DEBUT DATE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VARCHAR(50) TO DEBUT DATE' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> MODIFY DEBUT DATE;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC PLAYERS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| HIGHEST   | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.03 sec)
+
+mysql> ALTER TABLE PLAYERS
+    -> ADD WICKETS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> ADD COLUMN WICKETS INT;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC PLAYERS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| HIGHEST   | int         | YES  |     | NULL    |       |
+| WICKETS   | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE PLAYERS
+    -> MODIFY INNGINGS INT AFTER WICKETS INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INT' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> MODIFY INNINGS INT AFTER WICKETS INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INT' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> MODIFY COLUMN INNINGS INT AFTER WICKETS INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INT' at line 2
+mysql> ALTER TABLE PLAYERS
+    -> CHNAGE COLUMN INNINGS INT AFTER WICKETS INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CHNAGE COLUMN INNINGS INT AFTER WICKETS INT' at line 2
+mysql> DESC PLAYERS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| HIGHEST   | int         | YES  |     | NULL    |       |
+| WICKETS   | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE PLAYERS
+    -> ADD RUNS INT AFTER AGE;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC PLAYERS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| RUNS      | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| HIGHEST   | int         | YES  |     | NULL    |       |
+| WICKETS   | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> ALTER TABLE PLAYERS
+    -> DROP COLUMN WICKETS;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC PLAYERS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| RUNS      | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| HIGHEST   | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE PLAYERS
+    -> DROP COLUMN RUNS;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC PLAYERS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| HIGHEST   | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE PLYAERS RENAME CRICKTERS;
+ERROR 1146 (42S02): Table 'cricket_records.plyaers' doesn't exist
+mysql> ALTER TABLE PLAYERS RENAME CRICKTERS;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE AKATSUKI(EMP_ID CHAR(10),
+    -> FNAME VARCHAR(50),
+    -> LNAME VARCHAR(50),
+    -> KILLS INT,
+    -> NICKNAME VARCHAR(50),
+    -> NO_DOJ INT);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SHOW TABLES;
++---------------------------+
+| Tables_in_cricket_records |
++---------------------------+
+| akatsuki                  |
+| crickters                 |
++---------------------------+
+2 rows in set (0.04 sec)
+
+mysql> DROP TABLE CRICKTERS;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> SHOW TABLES;
++---------------------------+
+| Tables_in_cricket_records |
++---------------------------+
+| akatsuki                  |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> DESC AKATSUKI;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMP_ID   | char(10)    | YES  |     | NULL    |       |
+| FNAME    | varchar(50) | YES  |     | NULL    |       |
+| LNAME    | varchar(50) | YES  |     | NULL    |       |
+| KILLS    | int         | YES  |     | NULL    |       |
+| NICKNAME | varchar(50) | YES  |     | NULL    |       |
+| NO_DOJ   | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE AKATSUKI
+    -> RENAME COLUMN NO_DOJ TO NUMBER;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC AKATSUKI;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMP_ID   | char(10)    | YES  |     | NULL    |       |
+| FNAME    | varchar(50) | YES  |     | NULL    |       |
+| LNAME    | varchar(50) | YES  |     | NULL    |       |
+| KILLS    | int         | YES  |     | NULL    |       |
+| NICKNAME | varchar(50) | YES  |     | NULL    |       |
+| NUMBER   | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.04 sec)
+
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, NUMBER)
+    -> VALUES
+    -> ('EOO1','NAGATO','UZUMAKI',978,'PAIN',1)
+    -> ('EOO2','KONAN','AMEGAKURE',887,'PAPERS USER',2)
+    -> ('EOO3','OBITO','UCHIHA',1343,'MAINPLATOR',3)
+    -> ('EOO4','BLACK','ZETUS',650,'TREE USER',4)
+    -> ('EOO5','KISAME','CLOUD',978,'SHARKS'5)
+    -> ('EOO6','KAKUZU','HIDAN',878,'HEART',6)
+    -> ('EOO7','DEIDAR','MIST',765,'ART',7)
+    -> ('EOO8','SASORI','SAND',897,'PAPET',8)
+    -> ('EOO9','ITACHI','UCHIHA',1453,'GENJUTSU',9)
+    -> ('EO10','OROCHIMARU','SNAKE',4657,'SCIENTIST',10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('EOO2','KONAN','AMEGAKURE',887,'PAPERS USER',2)
+('EOO3','OBITO','UCHIHA',1343,'' at line 4
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, NUMBER)
+    -> VALUES
+    -> ('EOO1','NAGATO','UZUMAKI',978,'PAIN',1)
+    -> ('EOO2','KONAN','AMEGAKURE',887,'PAPERS_USER',2)
+    -> ('EOO3','OBITO','UCHIHA',1343,'MAINPLATOR',3)^C
+mysql> ^C
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, NUMBER)
+    -> VALUES
+    -> ('EOO1','NAGATO','UZUMAKI',978,'PAIN',1),
+    -> ('EOO2','KONAN','AMEGAKURE',887,'PAPERS_USER',2)
+    -> ^C
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, NUMBER)
+    -> VALUES
+    -> ('EOO1','NAGATO','UZUMAKI',978,'PAIN',1),
+    -> ('EOO2','KONAN','AMEGAKURE',887,'PAPERS_USER',2),
+    -> ('EOO3','OBITO','UCHIHA',1343,'MAINPLATOR',3),
+    -> ('EOO4','BLACK','ZETUS',650,'TREE_USER',4),
+    -> ('EOO5','KISAME','CLOUD',978,'SHARKS',5),
+    -> ('EOO6','KAKUZU','HIDAN',878,'HEART',6),
+    -> ('EOO7','DEIDAR','MIST',765,'ART',7),
+    -> ('EOO8','SASORI','SAND',897,'PAPET',8),
+    -> ('EOO9','ITACHI','UCHIHA',1453,'GENJUTSU',9),
+    -> ('EO10','OROCHIMARU','SNAKE',4657,'SCIENTIST',10);
+Query OK, 10 rows affected (0.06 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+------------+-----------+-------+-------------+--------+
+| EMP_ID | FNAME      | LNAME     | KILLS | NICKNAME    | NUMBER |
++--------+------------+-----------+-------+-------------+--------+
+| EOO1   | NAGATO     | UZUMAKI   |   978 | PAIN        |      1 |
+| EOO2   | KONAN      | AMEGAKURE |   887 | PAPERS_USER |      2 |
+| EOO3   | OBITO      | UCHIHA    |  1343 | MAINPLATOR  |      3 |
+| EOO4   | BLACK      | ZETUS     |   650 | TREE_USER   |      4 |
+| EOO5   | KISAME     | CLOUD     |   978 | SHARKS      |      5 |
+| EOO6   | KAKUZU     | HIDAN     |   878 | HEART       |      6 |
+| EOO7   | DEIDAR     | MIST      |   765 | ART         |      7 |
+| EOO8   | SASORI     | SAND      |   897 | PAPET       |      8 |
+| EOO9   | ITACHI     | UCHIHA    |  1453 | GENJUTSU    |      9 |
+| EO10   | OROCHIMARU | SNAKE     |  4657 | SCIENTIST   |     10 |
++--------+------------+-----------+-------+-------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> DELETE FROM AKATSUKI
+    -> WHERE EMP_ID = 'EO10';
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+--------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | NUMBER |
++--------+--------+-----------+-------+-------------+--------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |      1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |      2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |      3 |
+| EOO4   | BLACK  | ZETUS     |   650 | TREE_USER   |      4 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |      5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |      6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |      7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |      8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |      9 |
++--------+--------+-----------+-------+-------------+--------+
+9 rows in set (0.00 sec)
+
+mysql> DELETE FROM AKATSUKI
+    -> WHERE KILLS < 700;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+--------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | NUMBER |
++--------+--------+-----------+-------+-------------+--------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |      1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |      2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |      3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |      5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |      6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |      7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |      8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |      9 |
++--------+--------+-----------+-------+-------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE AKATSUKI
+    -> RENAME COLUNM NUMBER TO JOIN_NO;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER TO JOIN_NO' at line 2
+mysql> ALTER TABLE  AKATSUKI
+    -> RENAME COLUMN NUMBER TO JOIN_NO;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE  AKATSUKI
+    -> ^C
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> -- LOCK
+mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> START TRANSATION;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSATION' at line 1
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE EMP_ID = 'EOO3' FOR UPDATE;
++--------+-------+--------+-------+------------+---------+
+| EMP_ID | FNAME | LNAME  | KILLS | NICKNAME   | JOIN_NO |
++--------+-------+--------+-------+------------+---------+
+| EOO3   | OBITO | UCHIHA |  1343 | MAINPLATOR |       3 |
++--------+-------+--------+-------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET FNAME = 'TOBI' WHERE EMP_ID = 'EOO3';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | TOBI   | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> -- ROLLBACK
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET FNAME = 'MANDAR' WHERE EMP_ID = 'EOO3';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | MANDAR | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | TOBI   | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> -- SAVEPOINT
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET FNAME = 'OBITO' WHERE EMP_ID = 'EOO3';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> SAVEPOINT TO MY_SAVEPOINT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TO MY_SAVEPOINT' at line 1
+mysql> SAVEPOINT TO MY_SAVE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TO MY_SAVE' at line 1
+mysql> SAVEPOINT MY_SAVEPOINT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> ROLLBACK TO SAVEPOINT MY_SAVEPOINT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> -- SELECT
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT EMP_ID, FNAME, KILLS FROM AKATSUKI;
++--------+--------+-------+
+| EMP_ID | FNAME  | KILLS |
++--------+--------+-------+
+| EOO1   | NAGATO |   978 |
+| EOO2   | KONAN  |   887 |
+| EOO3   | OBITO  |  1343 |
+| EOO5   | KISAME |   978 |
+| EOO6   | KAKUZU |   878 |
+| EOO7   | DEIDAR |   765 |
+| EOO8   | SASORI |   897 |
+| EOO9   | ITACHI |  1453 |
++--------+--------+-------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS > 800;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS < 1000;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
++--------+--------+-----------+-------+-------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+-----------+-------+-------------+---------+
+| EMP_ID | FNAME  | LNAME     | KILLS | NICKNAME    | JOIN_NO |
++--------+--------+-----------+-------+-------------+---------+
+| EOO1   | NAGATO | UZUMAKI   |   978 | PAIN        |       1 |
+| EOO2   | KONAN  | AMEGAKURE |   887 | PAPERS_USER |       2 |
+| EOO3   | OBITO  | UCHIHA    |  1343 | MAINPLATOR  |       3 |
+| EOO5   | KISAME | CLOUD     |   978 | SHARKS      |       5 |
+| EOO6   | KAKUZU | HIDAN     |   878 | HEART       |       6 |
+| EOO7   | DEIDAR | MIST      |   765 | ART         |       7 |
+| EOO8   | SASORI | SAND      |   897 | PAPET       |       8 |
+| EOO9   | ITACHI | UCHIHA    |  1453 | GENJUTSU    |       9 |
++--------+--------+-----------+-------+-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> TRUNCATE TABLE AKATSUKI;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> SELECT * FROM AKATSUKI;
+Empty set (0.00 sec)
+
+mysql> SHOW TABLES;
++---------------------------+
+| Tables_in_cricket_records |
++---------------------------+
+| akatsuki                  |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> DESC AKATSUKI;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMP_ID   | char(10)    | YES  |     | NULL    |       |
+| FNAME    | varchar(50) | YES  |     | NULL    |       |
+| LNAME    | varchar(50) | YES  |     | NULL    |       |
+| KILLS    | int         | YES  |     | NULL    |       |
+| NICKNAME | varchar(50) | YES  |     | NULL    |       |
+| JOIN_NO  | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql>

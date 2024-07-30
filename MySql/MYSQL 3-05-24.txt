@@ -1,0 +1,287 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>MYSQL -U ROOT -P
+MYSQL: [ERROR] MYSQL: option '-P' requires an argument.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 47
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| cricket_records    |
+| employees          |
+| information_schema |
+| librarydb          |
+| mysql              |
+| performance_schema |
+| product_details    |
+| sys                |
++--------------------+
+9 rows in set (0.06 sec)
+
+mysql> USE CODEGNAN;
+Database changed
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_codegnan |
++--------------------+
+| animals            |
+| codegnan_emp       |
+| mytable            |
+| persons            |
+| persons1           |
+| shirtbrands        |
+| student            |
++--------------------+
+7 rows in set (0.05 sec)
+
+mysql>  CREATE TABLE PERSONS2(ID INT NOT NULL,
+    -> NAME VARCHAR(45) NOT NULL,
+    -> AGE INT CHECK(AGE >= 18));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> DESC PERSONS2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | int         | NO   |     | NULL    |       |
+| NAME  | varchar(45) | NO   |     | NULL    |       |
+| AGE   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> INSERT INTO PERSONS2(ID, NAME, AGE)
+    -> VALUES
+    -> (1,'A','18');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SELECT *  FROM PERSONS2;
++----+------+------+
+| ID | NAME | AGE  |
++----+------+------+
+|  1 | A    |   18 |
++----+------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO PERSONS2(ID, NAME, AGE)
+    -> VALUES^C
+mysql> CREATE TABLE PERSONS3(PERSON_ID INT NOT NULL PRIMARY KEY,
+    -> NAME VARCHAR(50),
+    -> AGE INT,
+    -> CITY VARCHAR(50));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESC PERSONS3;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| PERSON_ID | int         | NO   | PRI | NULL    |       |
+| NAME      | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| CITY      | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO PERSONS3(PERSON_ID, NAME, AGE, CITY)
+    -> VALUES
+    -> (1,'A',15,'UK'),
+    -> (2,'B',30,'USA'),
+    -> (3,'C',40,'AUS');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM PERSONS3;
++-----------+------+------+------+
+| PERSON_ID | NAME | AGE  | CITY |
++-----------+------+------+------+
+|         1 | A    |   15 | UK   |
+|         2 | B    |   30 | USA  |
+|         3 | C    |   40 | AUS  |
++-----------+------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE ORDERS(ORDER_ID INT NOT NULL PRIMARY KEY,
+    -> ORDER_NUM INT NOT NULL,
+    -> PERSON_ID INT,
+    -> FOREIGN KEY(PERSON_ID) REFERENCES PERSONS3(PERSON_ID));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> DESC ORDERS;
++-----------+------+------+-----+---------+-------+
+| Field     | Type | Null | Key | Default | Extra |
++-----------+------+------+-----+---------+-------+
+| ORDER_ID  | int  | NO   | PRI | NULL    |       |
+| ORDER_NUM | int  | NO   |     | NULL    |       |
+| PERSON_ID | int  | YES  | MUL | NULL    |       |
++-----------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO ORDERS(ORDER_ID, ORDER_NUM, PERSON_ID)
+    -> VALUES
+    -> (1,5544,2),
+    -> (2,3323,3),
+    -> (3,2135,2),
+    -> (4,3541,1);
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM ORDERS;
++----------+-----------+-----------+
+| ORDER_ID | ORDER_NUM | PERSON_ID |
++----------+-----------+-----------+
+|        1 |      5544 |         2 |
+|        2 |      3323 |         3 |
+|        3 |      2135 |         2 |
+|        4 |      3541 |         1 |
++----------+-----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql>Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\Nagarjuna> mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 48
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| cricket_records    |
+| employees          |
+| information_schema |
+| librarydb          |
+| mysql              |
+| performance_schema |
+| product_details    |
+| sys                |
++--------------------+
+9 rows in set (0.07 sec)
+
+mysql> use codegnan;
+Database changed
+mysql> CREATE TABLE PRODUCTS(PRODUCT_ID INT PRIMARY KEY,PRODUCT_NAME VARCHAR(50) NOT NULL, CATEGORY VARCHAR(30) NOT NULL, PRICE DECIMAL(10,2) NOT NULL);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> DESC PRODUCTS;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| PRODUCT_ID   | int           | NO   | PRI | NULL    |       |
+| PRODUCT_NAME | varchar(50)   | NO   |     | NULL    |       |
+| CATEGORY     | varchar(30)   | NO   |     | NULL    |       |
+| PRICE        | decimal(10,2) | NO   |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+4 rows in set (0.04 sec)
+
+mysql> INSERT INTO PRODUCTS(PRODUCT_ID,PRODUCT_NAME,CATEGORY,PRICE)
+    -> VALUES
+    -> (1,'LAPTOP','ELECTRONICS',1200.00),
+    -> (2,'HEADPHONES','ELECTRONICS',50.00),
+    -> (3,'COFFEE MAKER','APPLIANCES',80.00),
+    -> (4,'RUNNING SHOES','CLOTHING',75.00),
+    -> (5,'BACKPACK','ACCESSORIES',40.00);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM PRODUCTS;
++------------+---------------+-------------+---------+
+| PRODUCT_ID | PRODUCT_NAME  | CATEGORY    | PRICE   |
++------------+---------------+-------------+---------+
+|          1 | LAPTOP        | ELECTRONICS | 1200.00 |
+|          2 | HEADPHONES    | ELECTRONICS |   50.00 |
+|          3 | COFFEE MAKER  | APPLIANCES  |   80.00 |
+|          4 | RUNNING SHOES | CLOTHING    |   75.00 |
+|          5 | BACKPACK      | ACCESSORIES |   40.00 |
++------------+---------------+-------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT CATEGORY FROM PRODUCTS;
++-------------+
+| CATEGORY    |
++-------------+
+| ELECTRONICS |
+| APPLIANCES  |
+| CLOTHING    |
+| ACCESSORIES |
++-------------+
+4 rows in set (0.04 sec)
+
+mysql> SELECT * FROM PRODUCTS ORDER BY PRICE DESC;
++------------+---------------+-------------+---------+
+| PRODUCT_ID | PRODUCT_NAME  | CATEGORY    | PRICE   |
++------------+---------------+-------------+---------+
+|          1 | LAPTOP        | ELECTRONICS | 1200.00 |
+|          3 | COFFEE MAKER  | APPLIANCES  |   80.00 |
+|          4 | RUNNING SHOES | CLOTHING    |   75.00 |
+|          2 | HEADPHONES    | ELECTRONICS |   50.00 |
+|          5 | BACKPACK      | ACCESSORIES |   40.00 |
++------------+---------------+-------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM PRODUCTS LIMIT 2;
++------------+--------------+-------------+---------+
+| PRODUCT_ID | PRODUCT_NAME | CATEGORY    | PRICE   |
++------------+--------------+-------------+---------+
+|          1 | LAPTOP       | ELECTRONICS | 1200.00 |
+|          2 | HEADPHONES   | ELECTRONICS |   50.00 |
++------------+--------------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM PRODUCTS WHERE PRODUCT_NAME LIKE L%;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%' at line 1
+mysql> SELECT * FROM PRODUCTS WHERE PRODUCT_NAME LIKE 'L%';
++------------+--------------+-------------+---------+
+| PRODUCT_ID | PRODUCT_NAME | CATEGORY    | PRICE   |
++------------+--------------+-------------+---------+
+|          1 | LAPTOP       | ELECTRONICS | 1200.00 |
++------------+--------------+-------------+---------+
+1 row in set (0.02 sec)
+
+mysql> SELECT * FROM PRODUCTS WHERE CATEGORY LIKE 'ELECTRONICS%';
++------------+--------------+-------------+---------+
+| PRODUCT_ID | PRODUCT_NAME | CATEGORY    | PRICE   |
++------------+--------------+-------------+---------+
+|          1 | LAPTOP       | ELECTRONICS | 1200.00 |
+|          2 | HEADPHONES   | ELECTRONICS |   50.00 |
++------------+--------------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM PRODUCTS WHERE CATEGORY LIKE 'E%';
++------------+--------------+-------------+---------+
+| PRODUCT_ID | PRODUCT_NAME | CATEGORY    | PRICE   |
++------------+--------------+-------------+---------+
+|          1 | LAPTOP       | ELECTRONICS | 1200.00 |
+|          2 | HEADPHONES   | ELECTRONICS |   50.00 |
++------------+--------------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql>

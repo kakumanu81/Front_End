@@ -1,0 +1,401 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.06 sec)
+
+mysql> CREATE DATABASE EMPLOYEES;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> USE EMPLOYEES;
+Database changed
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> USE EMPLOYEES;
+Database changed
+mysql> CREATE TABLE BBCI_EMP;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> CREATE TABLE BCCI_EMP(EMP_ID CHAR(10),
+    -> FNAME VARCHAR(50),
+    -> LNAME VARCHAR(50),
+    -> AGE INT,
+    -> DEBUT VARCHAR(50),
+    -> H_S INT);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DESC BCCI_EMP;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| EMP_ID | char(10)    | YES  |     | NULL    |       |
+| FNAME  | varchar(50) | YES  |     | NULL    |       |
+| LNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE    | int         | YES  |     | NULL    |       |
+| DEBUT  | varchar(50) | YES  |     | NULL    |       |
+| H_S    | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.05 sec)
+
+mysql> ALTER TABLE BCCI_EMP
+    -> MODIFY DEBUT DATE;
+Query OK, 0 rows affected (0.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC BCCI_EMP;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| EMP_ID | char(10)    | YES  |     | NULL    |       |
+| FNAME  | varchar(50) | YES  |     | NULL    |       |
+| LNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE    | int         | YES  |     | NULL    |       |
+| DEBUT  | date        | YES  |     | NULL    |       |
+| H_S    | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.05 sec)
+
+mysql> ALTER TABLE BCCI_EMP
+    -> ADD INNINGS INT AFTER DEBUT;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC BCCI_EMP;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EMP_ID  | char(10)    | YES  |     | NULL    |       |
+| FNAME   | varchar(50) | YES  |     | NULL    |       |
+| LNAME   | varchar(50) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| DEBUT   | date        | YES  |     | NULL    |       |
+| INNINGS | int         | YES  |     | NULL    |       |
+| H_S     | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE BCCI_EMP
+    -> ADD LOCATION VARCHAR(50);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC BCCI_EMP;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMP_ID   | char(10)    | YES  |     | NULL    |       |
+| FNAME    | varchar(50) | YES  |     | NULL    |       |
+| LNAME    | varchar(50) | YES  |     | NULL    |       |
+| AGE      | int         | YES  |     | NULL    |       |
+| DEBUT    | date        | YES  |     | NULL    |       |
+| INNINGS  | int         | YES  |     | NULL    |       |
+| H_S      | int         | YES  |     | NULL    |       |
+| LOCATION | varchar(50) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE BCCI_EMP
+    -> RENAME COLUMN FNAME TO FIRSTNAME
+    -> RENAME COLUMN LNAME TO LASTNAME;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RENAME COLUMN LNAME TO LASTNAME' at line 3
+mysql> ALTER TABLE BCCI_EMP
+    -> RENAME COLUMN FNAME TO FIRSTNAME;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE BCCI_EMP
+    -> RENAME COLUMN LNAME TO LASTNAME;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC BCCI_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| H_S       | int         | YES  |     | NULL    |       |
+| LOCATION  | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE BCCI_EMP
+    -> CHANGE COLUMN LACATION PLACE VARCHAR(40);
+ERROR 1054 (42S22): Unknown column 'LACATION' in 'bcci_emp'
+mysql> ALTER TABLE BCCI_EMP
+    -> CHANGE COLUMN LOCATION PLACE VARCHAR(60);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC BCCI_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| H_S       | int         | YES  |     | NULL    |       |
+| PLACE     | varchar(60) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE BCCI_EMP
+    -> DROP COLUMN PLACE;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC BCCI_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| H_S       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.04 sec)
+
+mysql> CREATE TABLE DEPARTMENTS(DEPT_ID,
+    -> ^C
+mysql> CREATE TABLE DEPARTMENT(DEPT_ID CHAR(10),
+    -> DEPT_NAME VARCHAR(50)
+    -> DEMPT_NO INT,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DEMPT_NO INT,
+)' at line 3
+mysql> CREATE TABLE DEPARTMENT( DEPT_ID CHAR(5),
+    -> DEPT_NAME VARCHAR(50),
+    -> MANAGAER_ID INT,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> CREATE TABLE DEPARTMENT( DEPT_ID CHAR(5),
+    -> DEPT_NAME VARCHAR(50),
+    -> MANAGAER_ID INT);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SHOW TABLES;
++---------------------+
+| Tables_in_employees |
++---------------------+
+| bcci_emp            |
+| department          |
++---------------------+
+2 rows in set (0.00 sec)
+
+mysql> DROP TABLE DEPARTMENT;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> SHOW TABLES;
++---------------------+
+| Tables_in_employees |
++---------------------+
+| bcci_emp            |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> DESC BCCI_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| H_S       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)
+    -> VALUES
+    -> ('EOO1','SACHIN','TENDULKAR',51,'1989-12-23',842,242),
+    -> ('EOO2','MAHENDRA_SING','DOHIN',40,'2004-12-10',670,183),
+    -> ('E003','ROHIT','SHARAMA',36,'2007-12-04',560,264),
+    -> ('EOO4','VIRAT','KOHIL',35,'2008-04-18',570,183));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 6
+mysql> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)
+    -> VALUES
+    -> ('EOO1','SACHIN','TENDULKAR',51,'1989-12-23',842,242),
+    -> ('EOO2','MAHENDRA_SING','DOHIN',40,'2004-12-10',670,183),
+    -> ('E003','ROHIT','SHARAMA',36,'2007-12-04',560,264),
+    -> ('EOO4','VIRAT','KOHIL',35,'2008-04-18',570,183);
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> DESC BCCI_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | char(10)    | YES  |     | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DEBUT     | date        | YES  |     | NULL    |       |
+| INNINGS   | int         | YES  |     | NULL    |       |
+| H_S       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM BCCI_EMP;
++--------+---------------+-----------+------+------------+---------+------+
+| EMP_ID | FIRSTNAME     | LASTNAME  | AGE  | DEBUT      | INNINGS | H_S  |
++--------+---------------+-----------+------+------------+---------+------+
+| EOO1   | SACHIN        | TENDULKAR |   51 | 1989-12-23 |     842 |  242 |
+| EOO2   | MAHENDRA_SING | DOHIN     |   40 | 2004-12-10 |     670 |  183 |
+| E003   | ROHIT         | SHARAMA   |   36 | 2007-12-04 |     560 |  264 |
+| EOO4   | VIRAT         | KOHIL     |   35 | 2008-04-18 |     570 |  183 |
++--------+---------------+-----------+------+------------+---------+------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)
+    -> VALUES
+    -> ('EOO5','BEN','JOHN',35,'2008-04-18',570,183);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SETECT * FROM BCCI_EMP;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SETECT * FROM BCCI_EMP' at line 1
+mysql> SELECT * FROM BCCI_EMP;
++--------+---------------+-----------+------+------------+---------+------+
+| EMP_ID | FIRSTNAME     | LASTNAME  | AGE  | DEBUT      | INNINGS | H_S  |
++--------+---------------+-----------+------+------------+---------+------+
+| EOO1   | SACHIN        | TENDULKAR |   51 | 1989-12-23 |     842 |  242 |
+| EOO2   | MAHENDRA_SING | DOHIN     |   40 | 2004-12-10 |     670 |  183 |
+| E003   | ROHIT         | SHARAMA   |   36 | 2007-12-04 |     560 |  264 |
+| EOO4   | VIRAT         | KOHIL     |   35 | 2008-04-18 |     570 |  183 |
+| EOO5   | BEN           | JOHN      |   35 | 2008-04-18 |     570 |  183 |
++--------+---------------+-----------+------+------------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)
+    -> ('EOO0','NARINE','SUNIL',51,'1989-12-23',842,242);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''EOO0','NARINE','SUNIL',51,'1989-12-23',842,242)' at line 2
+mysql> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)
+    -> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)^C
+mysql> ^C
+mysql>
+mysql>
+mysql> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)
+    -> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)
+    -> ^C
+mysql> INSERT INTO BCCI_EMP(EMP_ID, FIRSTNAME, LASTNAME, AGE, DEBUT, INNINGS,H_S)
+    -> VALUES
+    -> ('EOO6','NARINE','SUNIL',51,'1989-12-23',842,242);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SETECT * FROM BCCI_EMP;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SETECT * FROM BCCI_EMP' at line 1
+mysql> SETECT * FROM BCCI_EMP;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SETECT * FROM BCCI_EMP' at line 1
+mysql> SELECT * FROM BCCI_EMP;
++--------+---------------+-----------+------+------------+---------+------+
+| EMP_ID | FIRSTNAME     | LASTNAME  | AGE  | DEBUT      | INNINGS | H_S  |
++--------+---------------+-----------+------+------------+---------+------+
+| EOO1   | SACHIN        | TENDULKAR |   51 | 1989-12-23 |     842 |  242 |
+| EOO2   | MAHENDRA_SING | DOHIN     |   40 | 2004-12-10 |     670 |  183 |
+| E003   | ROHIT         | SHARAMA   |   36 | 2007-12-04 |     560 |  264 |
+| EOO4   | VIRAT         | KOHIL     |   35 | 2008-04-18 |     570 |  183 |
+| EOO5   | BEN           | JOHN      |   35 | 2008-04-18 |     570 |  183 |
+| EOO6   | NARINE        | SUNIL     |   51 | 1989-12-23 |     842 |  242 |
++--------+---------------+-----------+------+------------+---------+------+
+6 rows in set (0.00 sec)
+
+mysql> DELETE FROM BCCI_EMP
+    -> WHERE EMP_ID = 'EOO6';
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM BCCI_EMP;
++--------+---------------+-----------+------+------------+---------+------+
+| EMP_ID | FIRSTNAME     | LASTNAME  | AGE  | DEBUT      | INNINGS | H_S  |
++--------+---------------+-----------+------+------------+---------+------+
+| EOO1   | SACHIN        | TENDULKAR |   51 | 1989-12-23 |     842 |  242 |
+| EOO2   | MAHENDRA_SING | DOHIN     |   40 | 2004-12-10 |     670 |  183 |
+| E003   | ROHIT         | SHARAMA   |   36 | 2007-12-04 |     560 |  264 |
+| EOO4   | VIRAT         | KOHIL     |   35 | 2008-04-18 |     570 |  183 |
+| EOO5   | BEN           | JOHN      |   35 | 2008-04-18 |     570 |  183 |
++--------+---------------+-----------+------+------------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> -- LOCK
+mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM BCCI_EMP WHERE EMP_ID = 'EOO4' FOR UPDATE;
++--------+-----------+----------+------+------------+---------+------+
+| EMP_ID | FIRSTNAME | LASTNAME | AGE  | DEBUT      | INNINGS | H_S  |
++--------+-----------+----------+------+------------+---------+------+
+| EOO4   | VIRAT     | KOHIL    |   35 | 2008-04-18 |     570 |  183 |
++--------+-----------+----------+------+------------+---------+------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE BCCI_EMP SET INNINGS 650 WHERE EMP_ID = 'E004';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '650 WHERE EMP_ID = 'E004'' at line 1
+mysql> UPDATE BCCI_EMP SET INNINGS 650 WHERE EMP_ID = 'EOO4';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '650 WHERE EMP_ID = 'EOO4'' at line 1
+mysql> UPDATE BCCI_EMP SET INNINGS = 650 WHERE EMP_ID = 'EOO4';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> SELECT * FROM BCCI_EMP;
++--------+---------------+-----------+------+------------+---------+------+
+| EMP_ID | FIRSTNAME     | LASTNAME  | AGE  | DEBUT      | INNINGS | H_S  |
++--------+---------------+-----------+------+------------+---------+------+
+| EOO1   | SACHIN        | TENDULKAR |   51 | 1989-12-23 |     842 |  242 |
+| EOO2   | MAHENDRA_SING | DOHIN     |   40 | 2004-12-10 |     670 |  183 |
+| E003   | ROHIT         | SHARAMA   |   36 | 2007-12-04 |     560 |  264 |
+| EOO4   | VIRAT         | KOHIL     |   35 | 2008-04-18 |     650 |  183 |
+| EOO5   | BEN           | JOHN      |   35 | 2008-04-18 |     570 |  183 |
++--------+---------------+-----------+------+------------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql>
+

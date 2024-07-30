@@ -1,0 +1,382 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 54
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SELECT DATE('2024-01-09 15:30:45');
++-----------------------------+
+| DATE('2024-01-09 15:30:45') |
++-----------------------------+
+| 2024-01-09                  |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TIME('2024-01-09 15:30:45');
++-----------------------------+
+| TIME('2024-01-09 15:30:45') |
++-----------------------------+
+| 15:30:45                    |
++-----------------------------+
+1 row in set (0.03 sec)
+
+mysql> SELECT YEAR('2024-01-09');
++--------------------+
+| YEAR('2024-01-09') |
++--------------------+
+|               2024 |
++--------------------+
+1 row in set (0.05 sec)
+
+mysql> SELECT MONTH('2024-01-09');
++---------------------+
+| MONTH('2024-01-09') |
++---------------------+
+|                   1 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DAY('2024-01-09');
++-------------------+
+| DAY('2024-01-09') |
++-------------------+
+|                 9 |
++-------------------+
+1 row in set (0.03 sec)
+
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2024-05-08 14:16:02 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2024-05-08 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURTIME();
++-----------+
+| CURTIME() |
++-----------+
+| 14:16:31  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURRENT_TIMESTAMP();
++---------------------+
+| CURRENT_TIMESTAMP() |
++---------------------+
+| 2024-05-08 14:17:13 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT('2024-01-09', '%w,%m,%e,%y');
++------------------------------------------+
+| DATE_FORMAT('2024-01-09', '%w,%m,%e,%y') |
++------------------------------------------+
+| 2,01,9,24                                |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATEDIFF('2024-01-09', '2024-01-14');
++--------------------------------------+
+| DATEDIFF('2024-01-09', '2024-01-14') |
++--------------------------------------+
+|                                   -5 |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_ADD('2024-01-09', INTERVAL 3 MONTH);
++------------------------------------------+
+| DATE_ADD('2024-01-09', INTERVAL 3 MONTH) |
++------------------------------------------+
+| 2024-04-09                               |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_SUB('2024-01-09', INTERVAL 3 MONTH);
++------------------------------------------+
+| DATE_SUB('2024-01-09', INTERVAL 3 MONTH) |
++------------------------------------------+
+| 2023-10-09                               |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT EXTRACT(HOUR FROM '2024-01-09 11:30:45');
++------------------------------------------+
+| EXTRACT(HOUR FROM '2024-01-09 11:30:45') |
++------------------------------------------+
+|                                       11 |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TIMESTAMPDIFF(SECOND,'2024-01-09 11:30:45', '2024-01-09 15:45:30);
+    '> ^C
+mysql> SELECT TIMESTAMPDIFF(SECOND,'2024-01-09 11:30:45', '2024-01-09 15:45:30');
++--------------------------------------------------------------------+
+| TIMESTAMPDIFF(SECOND,'2024-01-09 11:30:45', '2024-01-09 15:45:30') |
++--------------------------------------------------------------------+
+|                                                              15285 |
++--------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TIMEDIFF('11:30:45','15:45:30');
++---------------------------------+
+| TIMEDIFF('11:30:45','15:45:30') |
++---------------------------------+
+| -04:14:45                       |
++---------------------------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT ADDTIME('11:30:45','15:45:30');
++--------------------------------+
+| ADDTIME('11:30:45','15:45:30') |
++--------------------------------+
+| 27:16:15                       |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SUBTIME('11:30:45','15:45:30');
++--------------------------------+
+| SUBTIME('11:30:45','15:45:30') |
++--------------------------------+
+| -04:14:45                      |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql>Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\Nagarjuna> mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 55
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE COMPANY;
+Query OK, 1 row affected (0.08 sec)
+
+mysql> USE COMPANY;
+Database changed
+mysql> CREATE TABLE EMPLOYEE(
+    -> ID INT PRIMARY KEY,
+    -> NAME VARCHAR(255),
+    -> DEPARTMENT VARCHAR(255));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> CREATE TABLE SALARIES(
+    -> ID INT PRIMARY KEY,
+    -> EMPLOYEE_ID INT,
+    -> SALARY INT,
+    -> FOREIGN KEY(EMPLOYEE_ID) REFRERENCES EMPLOYEES(ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'REFRERENCES EMPLOYEES(ID))' at line 5
+mysql> CREATE TABLE SALARIES(
+    -> ID INT PRIMARY KEY,
+    -> EMPLOYEE_ID INT,
+    -> SALARY INT,
+    -> FOREIGN KEY(EMPLOYEE_ID) REFERENCES EMPLOYEES(ID));
+ERROR 1824 (HY000): Failed to open the referenced table 'employees'
+mysql> CREATE TABLE SALARIES(
+    -> ID INT PRIMARY KEY,
+    -> EMPLOYEE_ID INT,
+    -> SALARY INT,
+    -> FOREIGN KEY(EMPLOYEE_ID) REFERENCES EMPLOYEE(ID));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> INSERT INTO EMPLOYEE(ID, NAME, DEPARTMENT)VALUES
+    -> (1,'ALICE','HR'),
+    -> (2,'BOB','IT'),
+    -> (3,'CHARLIE','SALES');
+Query OK, 3 rows affected (0.06 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO SALARIES(ID, EMPLOYEE_ID, SALARY)VALUES
+    -> (1,1,50000),
+    -> (2,2,60000),
+    -> (3,3,45000);
+Query OK, 3 rows affected (0.07 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEE;
++----+---------+------------+
+| ID | NAME    | DEPARTMENT |
++----+---------+------------+
+|  1 | ALICE   | HR         |
+|  2 | BOB     | IT         |
+|  3 | CHARLIE | SALES      |
++----+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM SALARIES;
++----+-------------+--------+
+| ID | EMPLOYEE_ID | SALARY |
++----+-------------+--------+
+|  1 |           1 |  50000 |
+|  2 |           2 |  60000 |
+|  3 |           3 |  45000 |
++----+-------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEE CROSS JOIN SALARIES;
++----+---------+------------+----+-------------+--------+
+| ID | NAME    | DEPARTMENT | ID | EMPLOYEE_ID | SALARY |
++----+---------+------------+----+-------------+--------+
+|  3 | CHARLIE | SALES      |  1 |           1 |  50000 |
+|  2 | BOB     | IT         |  1 |           1 |  50000 |
+|  1 | ALICE   | HR         |  1 |           1 |  50000 |
+|  3 | CHARLIE | SALES      |  2 |           2 |  60000 |
+|  2 | BOB     | IT         |  2 |           2 |  60000 |
+|  1 | ALICE   | HR         |  2 |           2 |  60000 |
+|  3 | CHARLIE | SALES      |  3 |           3 |  45000 |
+|  2 | BOB     | IT         |  3 |           3 |  45000 |
+|  1 | ALICE   | HR         |  3 |           3 |  45000 |
++----+---------+------------+----+-------------+--------+
+9 rows in set (0.03 sec)
+
+mysql> SELECT EMPLOYEE.ID, NAME, DEPARTMENT, SALARY
+    -> FROM EMPLOYEE
+    -> INNER JOIN SALARIES ON EMPLOYEE_ID = SALARIES.EMPLOYEE_ID;
++----+---------+------------+--------+
+| ID | NAME    | DEPARTMENT | SALARY |
++----+---------+------------+--------+
+|  1 | ALICE   | HR         |  45000 |
+|  1 | ALICE   | HR         |  60000 |
+|  1 | ALICE   | HR         |  50000 |
+|  2 | BOB     | IT         |  45000 |
+|  2 | BOB     | IT         |  60000 |
+|  2 | BOB     | IT         |  50000 |
+|  3 | CHARLIE | SALES      |  45000 |
+|  3 | CHARLIE | SALES      |  60000 |
+|  3 | CHARLIE | SALES      |  50000 |
++----+---------+------------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT EMPLOYEE.ID, NAME, DEPARTMENT, SALARY
+    -> FROM EMPLOYEE
+    -> INNER JOIN SALARIES ON EMPLOYEE.ID = SALARIES.EMPLOYEE_ID;
++----+---------+------------+--------+
+| ID | NAME    | DEPARTMENT | SALARY |
++----+---------+------------+--------+
+|  1 | ALICE   | HR         |  50000 |
+|  2 | BOB     | IT         |  60000 |
+|  3 | CHARLIE | SALES      |  45000 |
++----+---------+------------+--------+
+3 rows in set (0.05 sec)
+
+mysql> CREATE TABLE EMP(
+    -> ENAME VARCHAR(255),
+    -> DEPTNO INT);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> CREATE TABLE DEPT(
+    -> DNAME VARCHAR(255),
+    -> DEPTNO INT);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> INSERT INTO EMP(ENAME, DEPTNO)VALUES
+    -> ('A',20),
+    -> ('B',NULL),
+    -> ('C',10),
+    -> ('D',NULL);
+Query OK, 4 rows affected (0.07 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO DEPT(DNAME, DEPTNO)VALUES
+    -> ('D1',10),
+    -> ('D2',20),
+    -> ('D3',30),
+    -> ('D4',40);
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMP;
++-------+--------+
+| ENAME | DEPTNO |
++-------+--------+
+| A     |     20 |
+| B     |   NULL |
+| C     |     10 |
+| D     |   NULL |
++-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM DEPT;
++-------+--------+
+| DNAME | DEPTNO |
++-------+--------+
+| D1    |     10 |
+| D2    |     20 |
+| D3    |     30 |
+| D4    |     40 |
++-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMP
+    -> LEFT JOIN DEPT ON
+    -> EMP.DEPTNO = DEPT.DEPTNO;
++-------+--------+-------+--------+
+| ENAME | DEPTNO | DNAME | DEPTNO |
++-------+--------+-------+--------+
+| A     |     20 | D2    |     20 |
+| B     |   NULL | NULL  |   NULL |
+| C     |     10 | D1    |     10 |
+| D     |   NULL | NULL  |   NULL |
++-------+--------+-------+--------+
+4 rows in set (0.05 sec)
+
+mysql> SELECT EMP.ENAME, EMP.DEPTNO, DEPT.DNAME
+    -> FROM EMP
+    -> LEFT JOIN DEPT ON
+    -> EMP.DEPTNO = DEPT.DEPTNO;
++-------+--------+-------+
+| ENAME | DEPTNO | DNAME |
++-------+--------+-------+
+| A     |     20 | D2    |
+| B     |   NULL | NULL  |
+| C     |     10 | D1    |
+| D     |   NULL | NULL  |
++-------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT EMP.ENAME, EMP.DEPTNO, DEPT.DNAME
+    -> FROM EMP
+    -> RIGHT JOIN DEPT ON
+    -> EMP.DEPTNO = DEPT.DEPTNO;
++-------+--------+-------+
+| ENAME | DEPTNO | DNAME |
++-------+--------+-------+
+| C     |     10 | D1    |
+| A     |     20 | D2    |
+| NULL  |   NULL | D3    |
+| NULL  |   NULL | D4    |
++-------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql>

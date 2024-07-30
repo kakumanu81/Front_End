@@ -1,0 +1,929 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 49
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| cricket_records    |
+| employees          |
+| information_schema |
+| librarydb          |
+| mysql              |
+| performance_schema |
+| product_details    |
+| sys                |
++--------------------+
+9 rows in set (0.01 sec)
+
+mysql> USE CRICKET_RECORDS;
+Database changed
+mysql> SHOW TABLES
+    -> ;
++---------------------------+
+| Tables_in_cricket_records |
++---------------------------+
+| akatsuki                  |
++---------------------------+
+1 row in set (0.01 sec)
+
+mysql> DESC AKATSUKI;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMP_ID   | char(10)    | YES  |     | NULL    |       |
+| FNAME    | varchar(50) | YES  |     | NULL    |       |
+| LNAME    | varchar(50) | YES  |     | NULL    |       |
+| KILLS    | int         | YES  |     | NULL    |       |
+| NICKNAME | varchar(50) | YES  |     | NULL    |       |
+| JOIN_NO  | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> SELECT * FROM AKATSUKI;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, JOIN_NO)
+    -> VALUES
+    -> ('E001','MANDAR','UCHIHA',40000,'GHOST',1),
+    -> ('E002','OBITO','UCHIHA',30000,'TELEPORTION',2),
+    -> ('EOO3','NAGATO','UZUMAKI',20000,'PAIN',3),
+    -> ('EOO4','ITACHI','UCHIHA',40000,'GOD OF GENJUSTUS',4)
+    -> ('EOO5','KONA','YAIKO',3000,'PAPER JUSTUS',5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('EOO5','KONA','YAIKO',3000,'PAPER JUSTUS',5)' at line 7
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, JOIN_NO)
+    -> VALUES
+    -> ('E001','MANDAR','UCHIHA',40000,'GHOST',1),
+    -> ('E002','OBITO','UCHIHA',30000,'TELEPORTION',2),
+    -> ('EOO3','NAGATO','UZUMAKI',20000,'PAIN',3),
+    -> ('EOO4','ITACHI','UCHIHA',40000,'GOD OF GENJUSTUS',4)
+    -> ('EOO5','DEIDAR','CLOUD',4000,'ART',5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('EOO5','DEIDAR','CLOUD',4000,'ART',5)' at line 7
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, JOIN_NO)
+    -> VALUES
+    -> ('E001','MANDAR','UCHIHA',40000,'GHOST',1),
+    -> ('E002','OBITO','UCHIHA',30000,'TELEPORTION',2),
+    -> ('EOO3','NAGATO','UZUMAKI',20000,'PAIN',3),
+    -> ('EOO4','ITACHI','UCHIHA',40000,'GOD OF GENJUSTUS',4)
+    -> ('EOO5','DEIDAR','CLOUD',4000,'ART',5));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('EOO5','DEIDAR','CLOUD',4000,'ART',5))' at line 7
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, JOIN_NO)
+    -> VALUES
+    -> ('E001','MANDAR','UCHIHA',40000,'GHOST',1),
+    -> ('E002','OBITO','UCHIHA',30000,'TELEPORTION',2),
+    -> ('EOO3','NAGATO','UZUMAKI',20000,'PAIN',3),
+    -> ('EOO4','ITACHI','UCHIHA',40000,'GOD OF GENJUSTUS',4)
+    -> ('EOO5','DEIDAR','CLOUD',40005,'ART',5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('EOO5','DEIDAR','CLOUD',40005,'ART',5)' at line 7
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, JOIN_NO)
+    -> VALUES
+    -> ('E001','MANDAR','UCHIHA',40000,'GHOST',1),
+    -> ('E002','OBITO','UCHIHA',30000,'TELEPORTION',2),
+    -> ('EOO3','NAGATO','UZUMAKI',20000,'PAIN',3),
+    -> ('EOO4','ITACHI','UCHIHA',40000,'GOD OF GENJUSTUS',4)
+    -> ('EOO5','DEIDAR','CLOUD',40005,'ART',5);^C
+mysql> ^C
+mysql> ^C
+mysql> INSERT INTO AKATSUKI(EMP_ID, FNAME, LNAME, KILLS, NICKNAME, JOIN_NO)
+    -> VALUES
+    -> ('E001','MANDAR','UCHIHA',40000,'GHOST',1),
+    -> ('E002','OBITO','UCHIHA',30000,'TELEPORTION',2),
+    -> ('EOO3','NAGATO','UZUMAKI',20000,'PAIN',3),
+    -> ('EOO4','ITACHI','UCHIHA',40000,'GOD OF GENJUSTUS',4),
+    -> ('EOO5','DEIDAR','CLOUD',40005,'ART',5);
+Query OK, 5 rows affected (0.07 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> DESC AKATSUKI;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EMP_ID   | char(10)    | YES  |     | NULL    |       |
+| FNAME    | varchar(50) | YES  |     | NULL    |       |
+| LNAME    | varchar(50) | YES  |     | NULL    |       |
+| KILLS    | int         | YES  |     | NULL    |       |
+| NICKNAME | varchar(50) | YES  |     | NULL    |       |
+| JOIN_NO  | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> -- ADDITION = '+'
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO + 5;
+Query OK, 5 rows affected (0.02 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       6 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       7 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       8 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       9 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |      10 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO - 5;
+Query OK, 5 rows affected (0.04 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO + 3 WHERE KILLS < 40000;
+Query OK, 2 rows affected (0.04 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       5 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO - 3 WHERE KILLS < 20000;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       5 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO - 3.00 WHERE KILLS < 20000;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       5 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO - 3 WHERE KILLS > 20000;
+Query OK, 4 rows affected (0.04 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |      -2 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       1 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       2 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO + 3.00 WHERE KILLS < 20000;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |      -2 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       1 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       2 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO + 3 WHERE KILLS < 20000;
+Query OK, 0 rows affected (0.04 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |      -2 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       1 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       2 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO + 3.00 WHERE KILLS > 40000;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |      -2 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       1 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |      -2 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       1 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO + 3.00 WHERE KILLS = 40000;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       6 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO - 3.00 WHERE KILLS = 20000;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK AKATSUKI;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AKATSUKI' at line 1
+mysql> ROLLBACK TABLE AKATSUKI;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE AKATSUKI' at line 1
+mysql> ^C
+mysql> ^C
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO * 3 WHERE KILLS = 40000;
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       3 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |      12 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.04 sec)
+
+mysql> UPDATE AKATSUKI SET JOIN_NO = JOIN_NO / 3 WHERE KILLS = 40000;
+Query OK, 2 rows affected (0.03 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 30000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 40000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET KILLS = 50000 WHERE JOIN_NO %2 = 0;
+Query OK, 2 rows affected (0.06 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS > 40000;
++--------+--------+--------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME  | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+--------+-------+------------------+---------+
+| E002   | OBITO  | UCHIHA | 50000 | TELEPORTION      |       2 |
+| EOO4   | ITACHI | UCHIHA | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD  | 40005 | ART              |       5 |
++--------+--------+--------+-------+------------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE NICKNAME != 'ART';
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
++--------+--------+---------+-------+------------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS >= 40000;
++--------+--------+--------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME  | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+--------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA | 50000 | TELEPORTION      |       2 |
+| EOO4   | ITACHI | UCHIHA | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD  | 40005 | ART              |       5 |
++--------+--------+--------+-------+------------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS <= 40000;
++--------+--------+---------+-------+----------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME | JOIN_NO |
++--------+--------+---------+-------+----------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST    |       1 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN     |       3 |
++--------+--------+---------+-------+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS < 40000;
++--------+--------+---------+-------+----------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME | JOIN_NO |
++--------+--------+---------+-------+----------+---------+
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN     |       3 |
++--------+--------+---------+-------+----------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS > 40000;
++--------+--------+--------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME  | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+--------+-------+------------------+---------+
+| E002   | OBITO  | UCHIHA | 50000 | TELEPORTION      |       2 |
+| EOO4   | ITACHI | UCHIHA | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD  | 40005 | ART              |       5 |
++--------+--------+--------+-------+------------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS BETWEEN 20000 AND 50000;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS BETWEEN 30000 AND 50000;
++--------+--------+--------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME  | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+--------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA | 50000 | TELEPORTION      |       2 |
+| EOO4   | ITACHI | UCHIHA | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD  | 40005 | ART              |       5 |
++--------+--------+--------+-------+------------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS  NOT BETWEEN 30000 AND 50000;
++--------+--------+---------+-------+----------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME | JOIN_NO |
++--------+--------+---------+-------+----------+---------+
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN     |       3 |
++--------+--------+---------+-------+----------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LNAME IN ('UCHIHA');
++--------+--------+--------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME  | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+--------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA | 50000 | TELEPORTION      |       2 |
+| EOO4   | ITACHI | UCHIHA | 50000 | GOD OF GENJUSTUS |       4 |
++--------+--------+--------+-------+------------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LNAME NOT IN ('UCHIHA');
++--------+--------+---------+-------+----------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME | JOIN_NO |
++--------+--------+---------+-------+----------+---------+
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN     |       3 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART      |       5 |
++--------+--------+---------+-------+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS IS NULL;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS IS NOT NULL;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LNMAE = 'UCHIHA' AND KILLS >= 40000;
+ERROR 1054 (42S22): Unknown column 'LNMAE' in 'where clause'
+mysql> SELECT * FROM AKATSUKI WHERE LNAMEE = 'UCHIHA' AND KILLS >= 40000;
+ERROR 1054 (42S22): Unknown column 'LNAMEE' in 'where clause'
+mysql> SELECT * FROM AKATSUKI WHERE LNAME = 'UCHIHA' AND KILLS >= 40000;
++--------+--------+--------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME  | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+--------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA | 50000 | TELEPORTION      |       2 |
+| EOO4   | ITACHI | UCHIHA | 50000 | GOD OF GENJUSTUS |       4 |
++--------+--------+--------+-------+------------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LNAME = 'UCHIHA' AND KILLS = 50000;
++--------+--------+--------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME  | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+--------+-------+------------------+---------+
+| E002   | OBITO  | UCHIHA | 50000 | TELEPORTION      |       2 |
+| EOO4   | ITACHI | UCHIHA | 50000 | GOD OF GENJUSTUS |       4 |
++--------+--------+--------+-------+------------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LNAME = 'UCHIHA'  OR LNAME = 'UZUMAKI';
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
++--------+--------+---------+-------+------------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LNAME = 'UCHIHA'  OR LNAME != 'UZUMAKI';
+
++--------+--------+--------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME  | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+--------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA | 50000 | TELEPORTION      |       2 |
+| EOO4   | ITACHI | UCHIHA | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD  | 40005 | ART              |       5 |
++--------+--------+--------+-------+------------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LNAME != 'UCHIHA'  OR LNAME != 'UZUMAKI'
+;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LNAME = 'CLOUD';
++--------+--------+-------+-------+----------+---------+
+| EMP_ID | FNAME  | LNAME | KILLS | NICKNAME | JOIN_NO |
++--------+--------+-------+-------+----------+---------+
+| EOO5   | DEIDAR | CLOUD | 40005 | ART      |       5 |
++--------+--------+-------+-------+----------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE NOT LNAME = 'UCHIHA';
++--------+--------+---------+-------+----------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME | JOIN_NO |
++--------+--------+---------+-------+----------+---------+
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN     |       3 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART      |       5 |
++--------+--------+---------+-------+----------+---------+
+2 rows in set (0.00 sec)
+       ^C
+mysql> ^C
+mysql> SELECT DISTINCT LNAME FROM WHERE JOIN_NO %2 = 0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE JOIN_NO %2 = 0' at line 1
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT LNAME = 'UCHIHA' FROM WHERE JOIN_NO %2 = 0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE JOIN_NO %2 = 0' at line 1
+mysql> SELECT DISTINCT LNAME WHERE 'UCHIHA';
+ERROR 1054 (42S22): Unknown column 'LNAME' in 'field list'
+mysql> SELECT DISTINCT 'UCHIHA' WHERE LNAME;
+ERROR 1054 (42S22): Unknown column 'LNAME' in 'where clause'
+mysql> SELECT DISTINCT(LNAME) FROM AKATSUKI;
++---------+
+| LNAME   |
++---------+
+| UCHIHA  |
+| UZUMAKI |
+| CLOUD   |
++---------+
+3 rows in set (0.02 sec)
+
+mysql> SELECT DISTINCT(LNAME) FROM AKATSUKI WHERE JOIN_NO %2 = 0;
++--------+
+| LNAME  |
++--------+
+| UCHIHA |
++--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 25//5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/5' at line 1
+mysql> SHOW ERRORS;
++-------+------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Level | Code | Message
+
+              |
++-------+------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Error | 1064 | You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/5' at line 1 |
++-------+------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 25/5;
++--------+
+| 25/5   |
++--------+
+| 5.0000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 20/0
+    -> ;
++------+
+| 20/0 |
++------+
+| NULL |
++------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SHOW WARNINGS;
++---------+------+---------------+
+| Level   | Code | Message       |
++---------+------+---------------+
+| Warning | 1365 | Division by 0 |
++---------+------+---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(FNAME,LNAME);
+ERROR 1054 (42S22): Unknown column 'FNAME' in 'field list'
+mysql> SHOW ERRORS;
++-------+------+----------------------------------------+
+| Level | Code | Message                                |
++-------+------+----------------------------------------+
+| Error | 1054 | Unknown column 'FNAME' in 'field list' |
++-------+------+----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LNAME AS 'LASTNAME',FNAME AS 'FIRSTNAME' FROM AKATSUKI;
++----------+-----------+
+| LASTNAME | FIRSTNAME |
++----------+-----------+
+| UCHIHA   | MANDAR    |
+| UCHIHA   | OBITO     |
+| UZUMAKI  | NAGATO    |
+| UCHIHA   | ITACHI    |
+| CLOUD    | DEIDAR    |
++----------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT LNAME AS 'LASTNAME',FNAME AS 'FIRSTNAME' FROM AKATSUKI;
++----------+-----------+
+| LASTNAME | FIRSTNAME |
++----------+-----------+
+| UCHIHA   | MANDAR    |
+| UCHIHA   | OBITO     |
+| UZUMAKI  | NAGATO    |
+| UCHIHA   | ITACHI    |
+| CLOUD    | DEIDAR    |
++----------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT LNAME AS 'LASTNAME',
+    -> FNAME AS 'FIRSTNAME'
+    -> FROM AKATSUKI;
++----------+-----------+
+| LASTNAME | FIRSTNAME |
++----------+-----------+
+| UCHIHA   | MANDAR    |
+| UCHIHA   | OBITO     |
+| UZUMAKI  | NAGATO    |
+| UCHIHA   | ITACHI    |
+| CLOUD    | DEIDAR    |
++----------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(FNAME,LNAME) AS 'NAME' FROM AKATSUKI;
++---------------+
+| NAME          |
++---------------+
+| MANDARUCHIHA  |
+| OBITOUCHIHA   |
+| NAGATOUZUMAKI |
+| ITACHIUCHIHA  |
+| DEIDARCLOUD   |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT_WS(',',FNAME,LNAME) AS 'NAME' FROM AKATSUKI;
++----------------+
+| NAME           |
++----------------+
+| MANDAR,UCHIHA  |
+| OBITO,UCHIHA   |
+| NAGATO,UZUMAKI |
+| ITACHI,UCHIHA  |
+| DEIDAR,CLOUD   |
++----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT NICKNAME,
+    -> LENGTH(NICKNAME) AS 'LENGTH',
+    -> SUBSTRING(NICKNAME,2, 4) AS 'SUBSTRING'
+    -> FROM AKATSUKI;
++------------------+--------+-----------+
+| NICKNAME         | LENGTH | SUBSTRING |
++------------------+--------+-----------+
+| GHOST            |      5 | HOST      |
+| TELEPORTION      |     11 | ELEP      |
+| PAIN             |      4 | AIN       |
+| GOD OF GENJUSTUS |     16 | OD O      |
+| ART              |      3 | RT        |
++------------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT NICKNAME,
+    -> SUBSTRING(NICKNAME,2, 4) AS 'SUBSTRING'
+    -> FROM AKATSUKI;
++------------------+-----------+
+| NICKNAME         | SUBSTRING |
++------------------+-----------+
+| GHOST            | HOST      |
+| TELEPORTION      | ELEP      |
+| PAIN             | AIN       |
+| GOD OF GENJUSTUS | OD O      |
+| ART              | RT        |
++------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT NICKNAME,
+    -> ^C
+mysql> SELECT REVERSE(NICKNAME) AS 'REVERSED'
+    -> FROM AKATSUKI;
++------------------+
+| REVERSED         |
++------------------+
+| TSOHG            |
+| NOITROPELET      |
+| NIAP             |
+| SUTSUJNEG FO DOG |
+| TRA              |
++------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT LNAME,
+    -> REPLACE(LNAME, 'UCHIHA','GOAT') AS 'REPLACED'
+    -> FROM AKATSUKI;
++---------+----------+
+| LNAME   | REPLACED |
++---------+----------+
+| UCHIHA  | GOAT     |
+| UCHIHA  | GOAT     |
+| UZUMAKI | UZUMAKI  |
+| UCHIHA  | GOAT     |
+| CLOUD   | CLOUD    |
++---------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT NICKNAME,
+    -> LEFT(NICKNAME) AS 'LEFT',
+    -> RIGHT(NICKNAME) AS 'RIGHT'
+    -> FROM AKATSUKI;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AS 'LEFT',
+RIGHT(NICKNAME) AS 'RIGHT'
+FROM AKATSUKI' at line 2
+mysql> SELECT NICKNAME,
+    -> LEFT(NICKNAME,3) AS 'LEFT',
+    -> RIGHT(NICKNAME,3) AS 'RIGHT'
+    -> FROM AKATSUKI;
++------------------+------+-------+
+| NICKNAME         | LEFT | RIGHT |
++------------------+------+-------+
+| GHOST            | GHO  | OST   |
+| TELEPORTION      | TEL  | ION   |
+| PAIN             | PAI  | AIN   |
+| GOD OF GENJUSTUS | GOD  | TUS   |
+| ART              | ART  | ART   |
++------------------+------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT LNAME AS 'LASTNAME',
+    -> FNAME AS 'FIRSTNAME'
+    -> FROM AKATSUKI;
++----------+-----------+
+| LASTNAME | FIRSTNAME |
++----------+-----------+
+| UCHIHA   | MANDAR    |
+| UCHIHA   | OBITO     |
+| UZUMAKI  | NAGATO    |
+| UCHIHA   | ITACHI    |
+| CLOUD    | DEIDAR    |
++----------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT LNAME AS 'LASTNAME',
+    -> ^C
+mysql> SELECT * FROM AKATSUKI;
++--------+--------+---------+-------+------------------+---------+
+| EMP_ID | FNAME  | LNAME   | KILLS | NICKNAME         | JOIN_NO |
++--------+--------+---------+-------+------------------+---------+
+| E001   | MANDAR | UCHIHA  | 40000 | GHOST            |       1 |
+| E002   | OBITO  | UCHIHA  | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO | UZUMAKI | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI | UCHIHA  | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR | CLOUD   | 40005 | ART              |       5 |
++--------+--------+---------+-------+------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE AKATSUKI
+    -> RENAME COLUMN FNAME TO 'FIRSTNAME';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''FIRSTNAME'' at line 2
+mysql> ALTER TABLE AKATSUKI
+    -> RENAME COLUMN FNAME 'FIRSTNAME';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''FIRSTNAME'' at line 2
+mysql> ALTER TABLE AKATSUKI
+    -> RENAME COLUMN FNAME TO FIRSTNAME,;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> ALTER TABLE AKATSUKI
+    -> RENAME COLUMN FNAME TO FIRSTNAME,
+    -> RENAME COLUMN LNAME TO LASTNAME;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++--------+-----------+----------+-------+------------------+---------+
+| EMP_ID | FIRSTNAME | LASTNAME | KILLS | NICKNAME         | JOIN_NO |
++--------+-----------+----------+-------+------------------+---------+
+| E001   | MANDAR    | UCHIHA   | 40000 | GHOST            |       1 |
+| E002   | OBITO     | UCHIHA   | 50000 | TELEPORTION      |       2 |
+| EOO3   | NAGATO    | UZUMAKI  | 20000 | PAIN             |       3 |
+| EOO4   | ITACHI    | UCHIHA   | 50000 | GOD OF GENJUSTUS |       4 |
+| EOO5   | DEIDAR    | CLOUD    | 40005 | ART              |       5 |
++--------+-----------+----------+-------+------------------+---------+
+5 rows in set (0.03 sec)
+
+mysql>

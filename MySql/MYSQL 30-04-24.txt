@@ -1,0 +1,267 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 44
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| cricket_records    |
+| employees          |
+| information_schema |
+| librarydb          |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> SELECT 10/2;
++--------+
+| 10/2   |
++--------+
+| 5.0000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 10/0;
++------+
+| 10/0 |
++------+
+| NULL |
++------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SHOW WARNINGS;
++---------+------+---------------+
+| Level   | Code | Message       |
++---------+------+---------------+
+| Warning | 1365 | Division by 0 |
++---------+------+---------------+
+1 row in set (0.02 sec)
+
+mysql> USE CODEGNAN;
+Database changed
+mysql> CREATE TABLE MYTABLE(ID INT PRIMARY KEY,
+    -> NAME VARCHAR(5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> CREATE TABLE MYTABLE(ID INT PRIMARY KEY, NAME VARCHAR(5));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> INSERT INTO MYTABLE(ID, NAME)
+    -> VALUES
+    -> (1, 'ABCDEF')
+    -> ;
+ERROR 1406 (22001): Data too long for column 'NAME' at row 1
+mysql> SELECT '123ABC' + 1;
++--------------+
+| '123ABC' + 1 |
++--------------+
+|          124 |
++--------------+
+1 row in set, 1 warning (0.03 sec)
+
+mysql> SHOW WARNINGS;
++---------+------+--------------------------------------------+
+| Level   | Code | Message                                    |
++---------+------+--------------------------------------------+
+| Warning | 1292 | Truncated incorrect DOUBLE value: '123ABC' |
++---------+------+--------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CONCAT('123ABC',1);
++--------------------+
+| CONCAT('123ABC',1) |
++--------------------+
+| 123ABC1            |
++--------------------+
+1 row in set (0.00 sec)
+
+STRING FUNCTIONS
+----------------
+----------------
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\Nagarjuna> mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 45
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE PRODUCT_DETAILS;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> USE PRODUCT_DETAILS;
+Database changed
+mysql> CREATE TABLE PRODUCTS(PRODUCT_ID INT PRIMARY KEY,
+    -> PRODUCT_NAME VARCHAR(100),
+    -> CATEGORY VARCHAR(50),
+    -> PRICE DECIMAL(8,2));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> DESC PRODUCTS;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| PRODUCT_ID   | int          | NO   | PRI | NULL    |       |
+| PRODUCT_NAME | varchar(100) | YES  |     | NULL    |       |
+| CATEGORY     | varchar(50)  | YES  |     | NULL    |       |
+| PRICE        | decimal(8,2) | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+4 rows in set (0.04 sec)
+
+mysql> INSERT INTO PRODUCTS(PRODUCT_ID, PRODUCT_NAME, CATEGORY, PRICE)
+    -> VALUES
+    -> (1,'LAPTOP','ELECTRONICS',1200.00),
+    -> (2,'HEADPHONES','ELECTRONICS',99.99),
+    -> (3,'T-SHIRT','APPAREL',19.99),
+    -> (4, 'COFFEE MAKER','APPLIANCES',49.99);
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM PRODUCTS;
++------------+--------------+-------------+---------+
+| PRODUCT_ID | PRODUCT_NAME | CATEGORY    | PRICE   |
++------------+--------------+-------------+---------+
+|          1 | LAPTOP       | ELECTRONICS | 1200.00 |
+|          2 | HEADPHONES   | ELECTRONICS |   99.99 |
+|          3 | T-SHIRT      | APPAREL     |   19.99 |
+|          4 | COFFEE MAKER | APPLIANCES  |   49.99 |
++------------+--------------+-------------+---------+
+4 rows in set (0.04 sec)
+
+mysql> SELECT PRODUCT_NAME AS 'PRODUCT',
+    -> CATEGORY AS 'PRODUCT_CATEGORY',
+    -> PRICE AS 'PRODUCT_PRICE',
+    -> FROM PRODUCTS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM PRODUCTS' at line 4
+mysql> SELECT PRODUCT_NAME AS 'PRODUCT',
+    -> CATEGORY AS 'PRODUCT_CATEGORY',
+    -> PRICE AS 'PRODUCT_PRICE'
+    -> FROM PRODUCTS;
++--------------+------------------+---------------+
+| PRODUCT      | PRODUCT_CATEGORY | PRODUCT_PRICE |
++--------------+------------------+---------------+
+| LAPTOP       | ELECTRONICS      |       1200.00 |
+| HEADPHONES   | ELECTRONICS      |         99.99 |
+| T-SHIRT      | APPAREL          |         19.99 |
+| COFFEE MAKER | APPLIANCES       |         49.99 |
++--------------+------------------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(PRODUCT_NAME, CATEGORY) AS 'CONCATENATED'
+    -> FROM PRODUCTS;
++------------------------+
+| CONCATENATED           |
++------------------------+
+| LAPTOPELECTRONICS      |
+| HEADPHONESELECTRONICS  |
+| T-SHIRTAPPAREL         |
+| COFFEE MAKERAPPLIANCES |
++------------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT_WS(',',PRODUCT_NAME, CATEGORY) AS 'CONCATENATED WITH SEPERATOR'
+    -> FROM PRODUCTS;
++-----------------------------+
+| CONCATENATED WITH SEPERATOR |
++-----------------------------+
+| LAPTOP,ELECTRONICS          |
+| HEADPHONES,ELECTRONICS      |
+| T-SHIRT,APPAREL             |
+| COFFEE MAKER,APPLIANCES     |
++-----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT PRODUCT_NAME,
+    -> LENGTH(PRODUCT_NAME) AS 'LENGTH',
+    -> SUBSTRING(PRODUCT_NAME, 2, 3) AS 'SUBSTRING'
+    -> FROM PRODUCTS;
++--------------+--------+-----------+
+| PRODUCT_NAME | LENGTH | SUBSTRING |
++--------------+--------+-----------+
+| LAPTOP       |      6 | APT       |
+| HEADPHONES   |     10 | EAD       |
+| T-SHIRT      |      7 | -SH       |
+| COFFEE MAKER |     12 | OFF       |
++--------------+--------+-----------+
+4 rows in set (0.02 sec)
+
+mysql> SELECT PRODUCT_NAME,
+    -> SUBSTRING(PRODUCT_NAME, 2, 3) AS 'SUBSTRING'
+    -> FROM PRODUCTS;
++--------------+-----------+
+| PRODUCT_NAME | SUBSTRING |
++--------------+-----------+
+| LAPTOP       | APT       |
+| HEADPHONES   | EAD       |
+| T-SHIRT      | -SH       |
+| COFFEE MAKER | OFF       |
++--------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT REVERSE(PRODUCT_NAME) AS 'REVERSED'
+    -> FROM PRODUCTS;
++--------------+
+| REVERSED     |
++--------------+
+| POTPAL       |
+| SENOHPDAEH   |
+| TRIHS-T      |
+| REKAM EEFFOC |
++--------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT CATEGORY,
+    -> REPLACE(CATEGORY, 'ELECTRONICS','GADGETS') AS 'REPLACED'
+    -> FROM PRODUCTS;
++-------------+------------+
+| CATEGORY    | REPLACED   |
++-------------+------------+
+| ELECTRONICS | GADGETS    |
+| ELECTRONICS | GADGETS    |
+| APPAREL     | APPAREL    |
+| APPLIANCES  | APPLIANCES |
++-------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT PRODUCT_NAME,
+    -> LEFT(PRODUCT_NAME,3) AS 'LEFT',
+    -> RIGHT(PRODUCT_NAME,2) AS 'RIGHT'
+    -> FROM PRODUCTS;
++--------------+------+-------+
+| PRODUCT_NAME | LEFT | RIGHT |
++--------------+------+-------+
+| LAPTOP       | LAP  | OP    |
+| HEADPHONES   | HEA  | ES    |
+| T-SHIRT      | T-S  | RT    |
+| COFFEE MAKER | COF  | ER    |
++--------------+------+-------+
+4 rows in set (0.04 sec)
+
+mysql>

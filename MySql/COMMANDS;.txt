@@ -1,0 +1,156 @@
+COMMANDS;
+--------
+SELECT Syntax;- SELECT * FROM table name;
+                SELECT column1, column2, FROM table name;
+
+SELECT DISTINCT Syntax;- SELECT DISTINCT Country FROM Customers;
+                         SELECT DISTINCT column1, column2, ...FROM table name;
+                         SELECT COUNT(DISTINCT Country) FROM Customers;
+
+WHERE Syntax;- SELECT column1, column2, ...FROM table name WHERE condition;
+
+AND Syntax;- SELECT column1, column2, ...FROM table name WHERE condition1 AND condition2 AND                                                      
+              condition3 ...;
+
+OR Syntax;- SELECT column1, column2, ...FROM table name WHERE condition1 OR condition2 OR                    
+             condition3 ...;
+
+NOT Syntax;- SELECT column1, column2, ...FROM table name WHERE NOT condition;
+
+ORDER BY Syntax;- SELECT column1, column2, ...FROM table name ORDER BY column1, column2, ...  
+                   ASC|DESC;
+
+INSERT INTO Syntax;- INSERT INTO table name (column1, column2, column3, ...) 
+                      VALUES (value1, value2, value3, ...);
+                     
+                   2) INSERT INTO table name
+                     VALUES (value1, value2, value3, ...);
+
+IS NULL Syntax;- SELECT column names FROM table name
+                 WHERE column name IS NULL;
+
+IS NOT NULL Syntax;- SELECT column names FROM table name
+                     WHERE column-name IS NOT NULL;
+
+UPDATE Syntax;- UPDATE table name
+                SET column1 = value1, column2 = value2, ...
+                WHERE condition;
+
+DELETE Syntax;- DELETE FROM table-name WHERE condition;
+
+LIMIT Syntax;-SELECT column name(s) FROM table-name WHERE condition LIMIT number;
+
+MIN() Syntax;-SELECT MIN(column name) FROM table name WHERE condition;
+
+MAX() Syntax;- SELECT MAX(column name) FROM table name WHERE condition
+
+COUNT() Syntax;- SELECT COUNT(column name) FROM table name WHERE condition;
+
+AVG() Syntax;- SELECT AVG(column name) FROM table name WHERE condition;
+
+SUM() Syntax;- SELECT SUM(column name) FROM table name WHERE condition;
+
+LIKE Syntax;- SELECT column1, column2, ...FROM table name WHERE columnN LIKE pattern;
+
+IN Syntax;- SELECT column name(s) FROM table name WHERE column name IN (value1,          
+            value2, ...);
+            
+            SELECT column name(s) FROM table name WHERE column name IN (SELECT STATEMENT);
+
+BETWEEN Syntax;- SELECT column name(s) FROM table name WHERE column name BETWEEN value1 AND     
+                  value2;
+
+Alias Column Syntax;- SELECT column name AS alias name FROM table name;
+
+Alias Table Syntax;- SELECT column name(s) FROM table name AS alias name;
+
+INNER JOIN Syntax;-  SELECT column name(s)
+                     FROM table1
+                     INNER JOIN table2
+                     ON table1.column name = table2.column name;
+
+LEFT JOIN Syntax;-   SELECT column name(s)
+                     FROM table1
+                     LEFT JOIN table2
+                     ON table1.column_name = table2.column_name;
+
+RIGHT JOIN Syntax;-  SELECT column name(s)
+                     FROM table1
+                     RIGHT JOIN table2
+                     ON table1.column_name = table2.column_name;
+
+CROSS JOIN Syntax;-  SELECT column name(s)
+                     FROM table1
+                     CROSS JOIN Table2;
+
+Self Join Syntax;-  SELECT column name(s)
+                    FROM table1 T1, table1 T2
+                    WHERE condition;
+
+UNION Syntax;- SELECT column name(s) FROM table1
+               UNION
+               SELECT column name(s) FROM table2;
+
+UNION ALL Syntax;- SELECT column name(s) FROM table1
+                   UNION ALL
+                   SELECT column name(s) FROM table2;
+
+GROUP BY Syntax;- SELECT column name(s)
+                  FROM table name
+                  WHERE condition
+                  GROUP BY column name(s)
+                  ORDER BY column name(s);
+
+HAVING Syntax;- SELECT column name(s)
+                FROM table name
+                WHERE condition
+                GROUP BY column name(s)
+                HAVING condition
+                ORDER BY column name(s);
+
+EXISTS Syntax;- SELECT column name(s)
+                FROM table name
+                WHERE EXISTS
+                (SELECT column name FROM table name WHERE condition);
+
+
+ANY Syntax;- SELECT column name(s)
+             FROM table name
+             WHERE column name operator ANY
+             (SELECT column name
+             FROM table name
+             WHERE condition);
+
+ALL Syntax With SELECT;- SELECT ALL column name(s)
+                         FROM table name
+                          WHERE condition;
+
+
+
+ALL Syntax With WHERE or HAVING;- SELECT column name(s)
+                                  FROM table name
+                                  WHERE column name operator ALL
+                                  (SELECT column name
+                                  FROM table name
+                                  WHERE condition);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

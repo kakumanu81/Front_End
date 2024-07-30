@@ -1,0 +1,83 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 57
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| company            |
+| cricket_records    |
+| employees          |
+| information_schema |
+| librarydb          |
+| mysql              |
+| performance_schema |
+| product_details    |
+| sales              |
+| sys                |
++--------------------+
+11 rows in set (0.03 sec)
+
+mysql> USE CODEGNAN;
+Database changed
+mysql> SHOW TABLES
+    -> ;
++--------------------+
+| Tables_in_codegnan |
++--------------------+
+| animals            |
+| codegnan_emp       |
+| mytable            |
+| orders             |
+| persons            |
+| persons1           |
+| persons2           |
+| persons3           |
+| products           |
+| shirtbrands        |
+| student            |
++--------------------+
+11 rows in set (0.06 sec)
+
+mysql> CREATE TABLE STUDENTS(
+    -> STUDENT_ID INT,
+    -> FIRST_NAME VARCHAR(50),
+    -> LAST_NAME VARCHAR(50),
+    -> PRIMARY KEY(STUDENT_ID),
+    -> UNIQUE KEY(FIRST_NAME, LAST_NAME));
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> INSERT INTO STUDENTS(STUDENT_ID, FIRST_NAME, LAST_NAME)
+    -> VALUES
+    -> (1,'JOHN','DOE'),
+    -> (2,'JANE','SMITH'),
+    -> (3,'ALICE','JOHNSON');
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM STUDENTS;
++------------+------------+-----------+
+| STUDENT_ID | FIRST_NAME | LAST_NAME |
++------------+------------+-----------+
+|          3 | ALICE      | JOHNSON   |
+|          2 | JANE       | SMITH     |
+|          1 | JOHN       | DOE       |
++------------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>

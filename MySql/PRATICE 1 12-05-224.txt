@@ -1,0 +1,1091 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| company            |
+| cricket_records    |
+| employees          |
+| hidden_leaf        |
+| information_schema |
+| instagram_clone_db |
+| librarydb          |
+| mysql              |
+| mysql_practice     |
+| performance_schema |
+| pratice1           |
+| product_details    |
+| sales              |
+| sys                |
++--------------------+
+15 rows in set (0.01 sec)
+
+mysql> DROP CRICKET_RECORDS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CRICKET_RECORDS' at line 1
+mysql> DROP DATABASE CRICKET_RECORDS;
+Query OK, 2 rows affected (0.11 sec)
+
+mysql> DROP DATABASE HIDDEN_LEAF;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| company            |
+| employees          |
+| information_schema |
+| instagram_clone_db |
+| librarydb          |
+| mysql              |
+| mysql_practice     |
+| performance_schema |
+| pratice1           |
+| product_details    |
+| sales              |
+| sys                |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql>  CREATE DATABASE HIDDEN_LEAF;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SHOW TABALES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABALES' at line 1
+mysql> SHOE TABLES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SHOE TABLES' at line 1
+mysql> SHOW TABLE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SHOW TABLES;
+ERROR 1046 (3D000): No database selected
+mysql> USE HIDDEN_LEAF;
+Database changed
+mysql> SHOW TABLES;
+Empty set (0.03 sec)
+
+mysql> CREATE TABLE AKATSUKI(ID VARCHAR(30) PRIMARY KEY
+    -> , FNAME VARCHAR(60),
+    -> LNAME VARCHAR(60),
+    -> AGE INT,
+    -> DOJ DATE NOT NULL,
+    -> RANKS VARCHAR(30));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESC AKATSUKI;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | varchar(30) | NO   | PRI | NULL    |       |
+| FNAME | varchar(60) | YES  |     | NULL    |       |
+| LNAME | varchar(60) | YES  |     | NULL    |       |
+| AGE   | int         | YES  |     | NULL    |       |
+| DOJ   | date        | NO   |     | NULL    |       |
+| RANKS | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> ALTER TABLE AKATSUKI
+    -> RENAME COLUMN FNAME TO FIRSTNAME;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE AKATSUKI
+    -> CHANGE COLUMN LNAME LASTNAME VARCHAR(50);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE AKATSUKI
+    -> MODIFY ID INT;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE AKATSUKI
+    -> ADD LEVEL INT AFTER DOJ;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE AKATSUKI
+    -> ADD KILLS INT;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC AKATSUKI;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| ID        | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(60) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DOJ       | date        | NO   |     | NULL    |       |
+| LEVEL     | int         | YES  |     | NULL    |       |
+| RANKS     | varchar(30) | YES  |     | NULL    |       |
+| KILLS     | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> DROP KILLS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'KILLS' at line 1
+mysql> ALTER TABLE AKATSUKI
+    -> DROP KILLS;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC AKATSUKI;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| ID        | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(60) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DOJ       | date        | NO   |     | NULL    |       |
+| LEVEL     | int         | YES  |     | NULL    |       |
+| RANKS     | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO AKATSUKI(ID, FIRSTNAME, LASTNAME, AGE, DOJ, LEVEL, RANKS)
+    -> VALUES
+    -> (1,'MANDARA','UCHIHA',50,'2022-12-25',5,'S'),
+    -> (2,'BLACK','ZUSTU',80,'2012-12-31',3,'S'),
+    -> (3,'OBITO','UCHIHA',35,'2023-02-14',5,'S'),
+    -> (4,'PAIN','UZUMAKI',32,'2023-04-12',5,'S'),
+    -> (5,'ITACHI','UCHIHA',21,2023-07-04',5,'S');
+    '> ^C
+mysql> INSERT INTO AKATSUKI(ID, FIRSTNAME, LASTNAME, AGE, DOJ, LEVEL, RANKS)
+    -> VALUES
+    -> (1,'MANDARA','UCHIHA',50,'2022-12-25',5,'S'),
+    -> (2,'BLACK','ZUSTU',80,'2012-12-31',3,'S'),
+    -> (3,'OBITO','UCHIHA',35,'2023-02-14',5,'S'),
+    -> (4,'PAIN','UZUMAKI',32,'2023-04-12',5,'S'),
+    -> (5,'ITACHI','UCHIHA',21,2023-07-04',5,'S');
+    '> ^C
+mysql> INSERT INTO AKATSUKI(ID, FIRSTNAME, LASTNAME, AGE, DOJ, LEVEL, RANKS)
+    -> VALUES
+    -> (1,'MANDARA','UCHIHA',50,'2022-12-25',5,'S'),
+    -> (2,'BLACK','ZUSTU',80,'2012-12-31',3,'S'),
+    -> (3,'OBITO','UCHIHA',35,'2023-02-14',5,'S'),
+    -> (4,'PAIN','UZUMAKI',32,'2023-04-12',5,'S'),
+    -> (5,'ITACHI','UCHIHA',21,'2023-07-04',5,'S');
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | PAIN      | UZUMAKI  |   32 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI
+    -> SET AGE 30
+    -> WHERE ID = 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '30
+WHERE ID = 4' at line 2
+mysql> UPDATE AKATSUKI
+    -> SET AGE = 30
+    -> WHERE ID = 4;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | PAIN      | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM AKATSUKI WHERE ID = 2;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | PAIN      | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO AKATSUKI(ID, FIRSTNAME, LASTNAME, AGE, DOJ, LEVEL, RANKS)
+    -> VALUES
+    -> (2,'BLACK','ZUSTU',80,'2012-12-31',3,'S');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | PAIN      | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | PAIN      | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql>  SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET FIRSTNAME = 'NAGATO' WHERE ID = 4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET FIRSTNAME = 'TOBI' WHERE ID = 3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | TOBI      | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET FIRSTNAME = 'TOBI' WHERE ID = 3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SAVEPOINT TO MY_SAVEPOINT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TO MY_SAVEPOINT' at line 1
+mysql> SAVEPOINT  MY_SAVEPOINT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | TOBI      | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO SAVEPOINT MY_SAVEPOINT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | TOBI      | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL = LEVEL + 10;
+Empty set (0.03 sec)
+
+mysql> SELECT LEVEL FROM AKATSUKI WHERE LEVEL = LEVEL + 10;
+Empty set (0.00 sec)
+
+mysql> SELECT ID, FIRSTNAME, LEVEL FROM AKATSUKI ;
++----+-----------+-------+
+| ID | FIRSTNAME | LEVEL |
++----+-----------+-------+
+|  1 | MANDARA   |     5 |
+|  2 | BLACK     |     3 |
+|  3 | OBITO     |     5 |
+|  4 | NAGATO    |     5 |
+|  5 | ITACHI    |     5 |
++----+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE > 50;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
++----+-----------+----------+------+------------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LEVEL FROM AKATSUKI WHERE LEVEL + 5;
++-------+
+| LEVEL |
++-------+
+|     5 |
+|     3 |
+|     5 |
+|     5 |
+|     5 |
++-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL = LEVEL + 5;
+Empty set (0.00 sec)
+
+mysql> SELECT LEVEL FROM AKATSUKI WHERE LEVEL = LEVEL + 5;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |     5 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     3 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |     5 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |     5 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |     5 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET LEVEL = LEVEL + 10;
+Query OK, 5 rows affected (0.04 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    15 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    13 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    15 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    15 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    15 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT LEVEL FROM AKATSUKI WHERE LEVEL = LEVEL - 5;
+Empty set (0.03 sec)
+
+mysql> UPDATE AKATSUKI SET LEVEL = LEVEL - 3;
+Query OK, 5 rows affected (0.01 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    12 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    10 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    12 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET LEVEL = LEVEL * 4 WHERE ID = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    12 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    10 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    48 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.04 sec)
+
+mysql> UPDATE AKATSUKI SET LEVEL = LEVEL / 2 WHERE ID %2 = 0;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    12 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |     5 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    24 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI SET LEVEL = LEVEL * 3 WHERE ID = 2;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE AKATSUKI SET LEVEL = LEVEL * 3 WHERE ID = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE AKATSUKI SET LEVEL = LEVEL * 1.5 WHERE ID = 4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL = 36;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
++----+-----------+----------+------+------------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL != 36;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL >= 20;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
++----+-----------+----------+------+------------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL <= 20;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL < 15;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL > 15;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
++----+-----------+----------+------+------------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE RANKS = 'S';
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE RANKS != 'S';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE BETWEEN 20 AND 40;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+3 rows in set (0.04 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE NOT BETWEEN 20 AND 40;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |
++----+-----------+----------+------+------------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE IN 40;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '40' at line 1
+mysql> SELECT * FROM AKATSUKI WHERE IN AGE = 40;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IN AGE = 40' at line 1
+mysql> SELECT * FROM AKATSUKI WHERE AGE IN(40);
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE IN(36);
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE IN(15);
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE IN('15');
+Empty set (0.03 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LASTNAME  IN('UCHIHA');
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL IN(36);
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
++----+-----------+----------+------+------------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE LEVEL NOT IN(36);
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE IS NULL;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE AGE IS NOT NULL;
++----+-----------+----------+------+------------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS |
++----+-----------+----------+------+------------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |
++----+-----------+----------+------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE AKATSUKI
+    -> ADD KILLS INT IS NOT NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IS NOT NULL' at line 2
+mysql> ALTER TABLE AKATSUKI
+    -> ADD KILLS INT  NOT NULL;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC AKATSUKI;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| ID        | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(60) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DOJ       | date        | NO   |     | NULL    |       |
+| LEVEL     | int         | YES  |     | NULL    |       |
+| RANKS     | varchar(30) | YES  |     | NULL    |       |
+| KILLS     | int         | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO AKATSUKI(KILLS)
+    -> VALUES
+    -> (^C
+mysql> INSERT INTO AKATSUKI(ID,KILLS)
+    -> VALUES
+    -> (1,50000),
+    -> (2,40000),
+    -> (3,60000),
+    -> (4,70000),
+    -> (5,80000);
+ERROR 1364 (HY000): Field 'DOJ' doesn't have a default value
+mysql> INSERT INTO AKATSUKI(ID,DOJ,KILLS)
+    -> VALUES
+    -> (1,'2023-12-25',50000),
+    -> (2,'2023-04-12',40000),
+    -> (3,'2024-02-14',60000),
+    -> (4,'2024-05-12',70000),
+    -> (5,'2024-04-12',80000);
+ERROR 1062 (23000): Duplicate entry '1' for key 'akatsuki.PRIMARY'
+mysql> INSERT INTO AKATSUKI(KILLS)
+    -> VALUES
+    -> (50000),
+    -> (40000),
+    -> (60000),
+    -> (70000),
+    -> (80000);
+ERROR 1364 (HY000): Field 'ID' doesn't have a default value
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS |
++----+-----------+----------+------+------------+-------+-------+-------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     |     0 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |     0 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |     0 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |     0 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |     0 |
++----+-----------+----------+------+------------+-------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE AKATSUKI
+    -> SET KILLS = 100000
+    -> WHERE ID = 1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE AKATSUKI
+    -> SET KILLS = 40000
+    -> WHERE ID = 2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE AKATSUKI
+    -> SET KILLS = 80000
+    -> WHERE ID = 3;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE AKATSUKI
+    -> SET KILLS = 70000
+    -> WHERE ID = 4;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE AKATSUKI
+    -> SET KILLS = 90000
+    -> WHERE ID = 5;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS = 80000 AND 90000;
++----+-----------+----------+------+------------+-------+-------+-------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS |
++----+-----------+----------+------+------------+-------+-------+-------+
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     | 80000 |
++----+-----------+----------+------+------------+-------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS = 80000 OR 90000;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS = 120000 OR 90000;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS = 120000 AND 10000;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS = 120000 OR 10000;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE KILLS = 120000 NOT 10000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10000' at line 1
+mysql> SELECT * FROM AKATSUKI WHERE NOT KILLS = 120000 OR 10000;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI WHERE NOT KILLS = 120000 AND 10000;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT(LASTNAME) FROM AKATSUKI;
++----------+
+| LASTNAME |
++----------+
+| UCHIHA   |
+| ZUSTU    |
+| UZUMAKI  |
++----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT FIRSTNAME AS 'FNAME'
+    -> LASTNAME AS 'LNAME'
+    -> FROM AKATSUKI;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LASTNAME AS 'LNAME'
+FROM AKATSUKI' at line 2
+mysql> SELECT FIRSTNAME AS 'FNAME',
+    -> LASTNAME AS 'LNAME'
+    -> FROM AKATSUKI;
++---------+---------+
+| FNAME   | LNAME   |
++---------+---------+
+| MANDARA | UCHIHA  |
+| BLACK   | ZUSTU   |
+| OBITO   | UCHIHA  |
+| NAGATO  | UZUMAKI |
+| ITACHI  | UCHIHA  |
++---------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(FIRSTNAME,LASTNAME) FROM AKATSUKI;
++----------------------------+
+| CONCAT(FIRSTNAME,LASTNAME) |
++----------------------------+
+| MANDARAUCHIHA              |
+| BLACKZUSTU                 |
+| OBITOUCHIHA                |
+| NAGATOUZUMAKI              |
+| ITACHIUCHIHA               |
++----------------------------+
+5 rows in set (0.03 sec)
+
+mysql> SELECT CONCAT(FIRSTNAME,' ',LASTNAME) FROM AKATSUKI;
++--------------------------------+
+| CONCAT(FIRSTNAME,' ',LASTNAME) |
++--------------------------------+
+| MANDARA UCHIHA                 |
+| BLACK ZUSTU                    |
+| OBITO UCHIHA                   |
+| NAGATO UZUMAKI                 |
+| ITACHI UCHIHA                  |
++--------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(FIRSTNAME,' ',LASTNAME) AS NAME FROM AKATSUKI;
++----------------+
+| NAME           |
++----------------+
+| MANDARA UCHIHA |
+| BLACK ZUSTU    |
+| OBITO UCHIHA   |
+| NAGATO UZUMAKI |
+| ITACHI UCHIHA  |
++----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT LOWER(FIRSTNAME) AS NAME FROM AKATSUKI;
++---------+
+| NAME    |
++---------+
+| mandara |
+| black   |
+| obito   |
+| nagato  |
+| itachi  |
++---------+
+5 rows in set (0.03 sec)
+
+mysql> SELECT UPERE(FIRSTNAME) AS NAME FROM AKATSUKI;
+ERROR 1305 (42000): FUNCTION hidden_leaf.UPERE does not exist
+mysql> SELECT UPPER(FIRSTNAME) AS NAME FROM AKATSUKI;
++---------+
+| NAME    |
++---------+
+| MANDARA |
+| BLACK   |
+| OBITO   |
+| NAGATO  |
+| ITACHI  |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(FIRSTNAME,' ',LASTNAME) AS NAME FROM AKATSUKI, SUBSTING(2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(2)' at line 1
+mysql> SELECT FIRSTNAME
+    -> LENGTH(LASTNAME) AS 'LENGTH',^C
+mysql> ^C
+mysql> SELECT FIRSTNAME,
+    -> LENGTH(LASTNAME) AS 'LENGTH',
+    -> SUBSTRING(FIRSTNAME,0,4) AS 'LEFT',
+    -> SUBSTRING(FIRSTNAME,0,-1) AS 'RIGHT'
+    -> FROM AKATSUKI;
++-----------+--------+------+-------+
+| FIRSTNAME | LENGTH | LEFT | RIGHT |
++-----------+--------+------+-------+
+| MANDARA   |      6 |      |       |
+| BLACK     |      5 |      |       |
+| OBITO     |      6 |      |       |
+| NAGATO    |      7 |      |       |
+| ITACHI    |      6 |      |       |
++-----------+--------+------+-------+
+5 rows in set (0.04 sec)
+
+mysql> SELECT FIRSTNAME,
+    -> LENGTH(LASTNAME) AS 'LENGTH',
+    -> SUBSTRING(FIRSTNAME,2,4) AS 'LEFT',
+    -> ^CIRSTNAME,2,4) AS 'LEFT',
+mysql> ^C
+mysql> SELECT FIRSTNAME,
+    -> LENGTH(LASTNAME) AS 'LENGTH',
+    -> LEFT(FIRSTNAME,2,4) AS 'LEFT',
+    -> RIGTH(FIRSTNAME,2,4) AS 'RIGHT'
+    -> FROM AKATSUKI;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',4) AS 'LEFT',
+RIGTH(FIRSTNAME,2,4) AS 'RIGHT'
+FROM AKATSUKI' at line 3
+mysql> SELECT FIRSTNAME,
+    -> LENGTH(LASTNAME) AS 'LENGTH',
+    -> SUBSTRING(FIRSTNAME,2,4) AS 'SUBSTRING',
+    -> LEFT(FIRSTNAME,4) AS 'LEFT',
+    -> RIGHT(FIRSTNAME,4) AS 'RIGHT'
+    -> FROM AKATSUKI;
++-----------+--------+-----------+------+-------+
+| FIRSTNAME | LENGTH | SUBSTRING | LEFT | RIGHT |
++-----------+--------+-----------+------+-------+
+| MANDARA   |      6 | ANDA      | MAND | DARA  |
+| BLACK     |      5 | LACK      | BLAC | LACK  |
+| OBITO     |      6 | BITO      | OBIT | BITO  |
+| NAGATO    |      7 | AGAT      | NAGA | GATO  |
+| ITACHI    |      6 | TACH      | ITAC | ACHI  |
++-----------+--------+-----------+------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT REVERSE(LASTNAME) FROM AKATSUKI;
++-------------------+
+| REVERSE(LASTNAME) |
++-------------------+
+| AHIHCU            |
+| UTSUZ             |
+| AHIHCU            |
+| IKAMUZU           |
+| AHIHCU            |
++-------------------+
+5 rows in set (0.03 sec)
+
+mysql> SELECT REPLACE(LASTNAME,'UCHIHA','GOAT') FROM AKATSUKI;
++-----------------------------------+
+| REPLACE(LASTNAME,'UCHIHA','GOAT') |
++-----------------------------------+
+| GOAT                              |
+| ZUSTU                             |
+| GOAT                              |
+| UZUMAKI                           |
+| GOAT                              |
++-----------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT REPLACE(LASTNAME,'UCHIHA','GOAT') AS 'LNAME' FROM AKATSUKI;
++---------+
+| LNAME   |
++---------+
+| GOAT    |
+| ZUSTU   |
+| GOAT    |
+| UZUMAKI |
+| GOAT    |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE HOKAGE(
+    -> ID INT NOT NULL AUTOINCRIMENT
+    -> FNAME VARCHAR(60) NOT NULL,
+    -> LNAME VARCHAR(60) NOT NULL,
+    -> AGE INT CHECK > 20,
+    -> LOCATION VARCHAR(50) DEFAULT = 'LEAF NIJA',
+    -> LEVEL TINITEXT(10),
+    -> PRIMARY KEY(ID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTOINCRIMENT
+FNAME VARCHAR(60) NOT NULL,
+LNAME VARCHAR(60) NOT NULL,
+AGE INT CH' at line 2
+mysql> CREATE TABLE HOKAGE(
+    -> ID INT NOT NULL AUTOINCREMENT
+    -> FNAME VARCHAR(60) NOT NULL,^C
+mysql> CREATE TABLE HOKAGE(
+    -> ID INT NOT NULL AUTOINCREMENT,
+    -> FNAME VARCHAR(60) NOT NULL,
+    -> LNAME VARCHAR(60) NOT NULL,
+    -> AGE INT CHECK > 20,
+    -> LOCATION VARCHAR(50) DEFAULT = 'LEAF NIJA',
+    -> LEVEL TINITEXT(10),
+    -> PRIMARY KEY(ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTOINCREMENT,
+FNAME VARCHAR(60) NOT NULL,
+LNAME VARCHAR(60) NOT NULL,
+AGE INT C' at line 2
+mysql>

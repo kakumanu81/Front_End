@@ -1,0 +1,408 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| company            |
+| employees          |
+| hidden_leaf        |
+| information_schema |
+| instagram_clone_db |
+| librarydb          |
+| mysql              |
+| mysql_practice     |
+| performance_schema |
+| pratice1           |
+| product_details    |
+| sales              |
+| sys                |
++--------------------+
+14 rows in set (0.01 sec)
+
+mysql> USE HIDDEN_LEAF;
+Database changed
+mysql> SHOW TABLES;
++-----------------------+
+| Tables_in_hidden_leaf |
++-----------------------+
+| akatsuki              |
++-----------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE HOKAGE(
+    -> ID INT NOT NULL AUTO_INCREMENT,
+    -> FNAME VARCHAR(50) NOT NULL,
+    -> LNAME VARCHAR(50) NOT NULL,
+    -> AGE INT CHECK > 20,
+    -> LOCATION VARCHAR(50) DEFAULT = 'LEAF_NINJA',
+    -> LEVEL INT );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> 20,
+LOCATION VARCHAR(50) DEFAULT = 'LEAF_NINJA',
+LEVEL INT )' at line 5
+mysql> CREATE TABLE HOKAGE(
+    -> ID INT NOT NULL AUTO_INCREMENT,
+    -> FNAME VARCHAR(50) NOT NULL,
+    -> LNAME VARCHAR(50) NOT NULL,
+    -> AGE INT CHECK(AGE >= 20),
+    -> LOCATION VARCHAR(50) DEFAULT = 'LEAF_NINJA',
+    -> LEVEL INT );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 'LEAF_NINJA',
+LEVEL INT )' at line 6
+mysql> CREATE TABLE HOKAGE(
+    -> ID INT NOT NULL AUTO_INCREMENT,
+    -> FNAME VARCHAR(50) NOT NULL,
+    -> LNAME VARCHAR(50) NOT NULL,
+    -> AGE INT CHECK(AGE >= 20),
+    -> LOCATION VARCHAR(50) DEFAULT 'LEAF_NINJA',
+    -> LEVEL INT,
+    -> PRIMARY KEY(ID));
+Query OK, 0 rows affected (0.86 sec)
+
+mysql> DESC HOKAGE;
++----------+-------------+------+-----+------------+----------------+
+| Field    | Type        | Null | Key | Default    | Extra          |
++----------+-------------+------+-----+------------+----------------+
+| ID       | int         | NO   | PRI | NULL       | auto_increment |
+| FNAME    | varchar(50) | NO   |     | NULL       |                |
+| LNAME    | varchar(50) | NO   |     | NULL       |                |
+| AGE      | int         | YES  |     | NULL       |                |
+| LOCATION | varchar(50) | YES  |     | LEAF_NINJA |                |
+| LEVEL    | int         | YES  |     | NULL       |                |
++----------+-------------+------+-----+------------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO HOKAGE(FNAME,LNAME,AGE,LEVEL)
+    -> VALUES
+    -> ('HARSHIRAM','SENJU',50,5),
+    -> ('TOBIRAM','SENJU',45,5),
+    -> ('HERUZUN','SARUTOBI',60,5),
+    -> ('MINATO','NAMIKAJI',25,5),
+    -> ('TSUNADE','SENJU',65,5);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM HOKAGE;
++----+-----------+----------+------+------------+-------+
+| ID | FNAME     | LNAME    | AGE  | LOCATION   | LEVEL |
++----+-----------+----------+------+------------+-------+
+|  1 | HARSHIRAM | SENJU    |   50 | LEAF_NINJA |     5 |
+|  2 | TOBIRAM   | SENJU    |   45 | LEAF_NINJA |     5 |
+|  3 | HERUZUN   | SARUTOBI |   60 | LEAF_NINJA |     5 |
+|  4 | MINATO    | NAMIKAJI |   25 | LEAF_NINJA |     5 |
+|  5 | TSUNADE   | SENJU    |   65 | LEAF_NINJA |     5 |
++----+-----------+----------+------+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE SALARIES(SALARY INT NOT NULL PRIMARY KEY,
+    -> RANK_MISSIONS VARCHAR(50) NOT NULL,
+    -> KILLS INT NOT NULL,
+    -> ID INT,
+    -> FOREIGN KEY(ID) REFERENCES HOKAGE(ID));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> DESC SALARIES;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| SALARY        | int         | NO   | PRI | NULL    |       |
+| RANK_MISSIONS | varchar(50) | NO   |     | NULL    |       |
+| KILLS         | int         | NO   |     | NULL    |       |
+| ID            | int         | YES  | MUL | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS)
+    -> VALUES
+    -> (50000,'A(90) B(50) C(100)',40000),
+    -> (40000,'A(80) B(60) C(150)',50000),
+    -> (50000,'A(60) B(70) C(120)',60000),
+    -> (60000,'A(80) B(80) C(140)',70000),
+    -> (50000,'A(50) B(40) C(100)',30000);
+ERROR 1062 (23000): Duplicate entry '50000' for key 'salaries.PRIMARY'
+mysql> (50000,'A(50) B(40) C(100)',30000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '50000,'A(50) B(40) C(100)',30000)' at line 1
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS)
+    -> VALUES
+    -> (50000,'A(90) B(50) C(100)',40000),
+    -> (40000,'A(80) B(60) C(150)',50000),
+    -> (60000,'A(60) B(70) C(120)',60000),
+    -> (70000,'A(50) B(40) C(100)',30000),
+    -> (30000,'A(50) B(40) C(100)',30000);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> DESC SALARIES;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| SALARY        | int         | NO   | PRI | NULL    |       |
+| RANK_MISSIONS | varchar(50) | NO   |     | NULL    |       |
+| KILLS         | int         | NO   |     | NULL    |       |
+| ID            | int         | YES  | MUL | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM SALARIES;
++--------+--------------------+-------+------+
+| SALARY | RANK_MISSIONS      | KILLS | ID   |
++--------+--------------------+-------+------+
+|  30000 | A(50) B(40) C(100) | 30000 | NULL |
+|  40000 | A(80) B(60) C(150) | 50000 | NULL |
+|  50000 | A(90) B(50) C(100) | 40000 | NULL |
+|  60000 | A(60) B(70) C(120) | 60000 | NULL |
+|  70000 | A(50) B(40) C(100) | 30000 | NULL |
++--------+--------------------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS,ID)
+    -> VALUES
+    -> (50000,'A(90) B(50) C(100)',40000),
+    -> (40000,'A(80) B(60) C(150)',50000),
+    -> (60000,'A(60) B(70) C(120)',60000),
+    -> (70000,'A(50) B(40) C(100)',30000),^C
+mysql> ^C
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS,ID)
+    -> VALUES
+    -> (50000,'A(90) B(50) C(100)',40000,1),
+    -> (40000,'A(80) B(60) C(150)',50000,2),
+    -> (50000,'A(90) B(50) C(100)',40000,3),
+    -> (60000,'A(60) B(70) C(120)',60000,4),
+    -> (30000,'A(50) B(40) C(100)',30000,5);
+ERROR 1062 (23000): Duplicate entry '50000' for key 'salaries.PRIMARY'
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS,ID)
+    -> VALUES
+    -> (50000,'A(90) B(50) C(100)',40000,1),
+    -> (40000,'A(80) B(60) C(150)',50000,2),
+    -> (60000,'A(90) B(50) C(100)',40000,3),
+    -> (70000,'A(60) B(70) C(120)',60000,4),
+    -> (30000,'A(50) B(40) C(100)',30000,5);
+ERROR 1062 (23000): Duplicate entry '50000' for key 'salaries.PRIMARY'
+mysql> ^C
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS,ID)
+    -> VALUES
+    -> (50000,'A(90) B(50) C(100)',40000,1),
+    -> (40000,'A(80) B(60) C(150)',50000,2),
+    -> (60000,'A(90) B(50) C(100)',40000,3),
+    -> (80000,'A(90) B(50) C(100)',40000,4),
+    -> (30000,'A(50) B(40) C(100)',30000,5);
+ERROR 1062 (23000): Duplicate entry '50000' for key 'salaries.PRIMARY'
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS,ID)
+    -> VALUES
+    -> (90000,'A(90) B(50) C(100)',40000,1),
+    -> (40000,'A(80) B(60) C(150)',50000,2),
+    -> (60000,'A(90) B(50) C(100)',40000,3),
+    -> (80000,'A(90) B(50) C(100)',40000,4),
+    -> (30000,'A(50) B(40) C(100)',30000,5);
+ERROR 1062 (23000): Duplicate entry '40000' for key 'salaries.PRIMARY'
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS,ID)
+    -> VALUES
+    -> (90000,'A(90) B(50) C(100)',40000,1),
+    -> (45000,'A(80) B(60) C(150)',50000,2),
+    -> (60000,'A(90) B(50) C(100)',40000,3),
+    -> (80000,'A(90) B(50) C(100)',40000,4),
+    -> (30000,'A(50) B(40) C(100)',30000,5);
+ERROR 1062 (23000): Duplicate entry '60000' for key 'salaries.PRIMARY'
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS,ID)
+    -> VALUES
+    -> (90000,'A(90) B(50) C(100)',40000,1),
+    -> (40000,'A(80) B(60) C(150)',50000,2),
+    -> (63000,'A(90) B(50) C(100)',40000,3),
+    -> (84000,'A(90) B(50) C(100)',40000,4),
+    -> (10600,'A(50) B(40) C(100)',30000,5);
+ERROR 1062 (23000): Duplicate entry '40000' for key 'salaries.PRIMARY'
+mysql> INSERT INTO SALARIES(SALARY,RANK_MISSIONS,KILLS,ID)
+    -> VALUES
+    -> (90000,'A(90) B(50) C(100)',40000,1),
+    -> (46000,'A(80) B(60) C(150)',50000,2),
+    -> (63000,'A(90) B(50) C(100)',40000,3),
+    -> (84000,'A(90) B(50) C(100)',40000,4),
+    -> (10600,'A(50) B(40) C(100)',30000,5);
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM SALARIES;
++--------+--------------------+-------+------+
+| SALARY | RANK_MISSIONS      | KILLS | ID   |
++--------+--------------------+-------+------+
+|  10600 | A(50) B(40) C(100) | 30000 |    5 |
+|  30000 | A(50) B(40) C(100) | 30000 | NULL |
+|  40000 | A(80) B(60) C(150) | 50000 | NULL |
+|  46000 | A(80) B(60) C(150) | 50000 |    2 |
+|  50000 | A(90) B(50) C(100) | 40000 | NULL |
+|  60000 | A(60) B(70) C(120) | 60000 | NULL |
+|  63000 | A(90) B(50) C(100) | 40000 |    3 |
+|  70000 | A(50) B(40) C(100) | 30000 | NULL |
+|  84000 | A(90) B(50) C(100) | 40000 |    4 |
+|  90000 | A(90) B(50) C(100) | 40000 |    1 |
++--------+--------------------+-------+------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT ID FROM HOKAGE;
++----+
+| ID |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
+|  5 |
++----+
+5 rows in set (0.00 sec)
+
+mysql> SELECT FNAME, COUNT(*) FROM HOKAGE GROUP BY FNAME;
++-----------+----------+
+| FNAME     | COUNT(*) |
++-----------+----------+
+| HARSHIRAM |        1 |
+| TOBIRAM   |        1 |
+| HERUZUN   |        1 |
+| MINATO    |        1 |
+| TSUNADE   |        1 |
++-----------+----------+
+5 rows in set (0.03 sec)
+
+mysql> SELECT * FROM AKATSUKI;
++----+-----------+----------+------+------------+-------+-------+--------+
+| ID | FIRSTNAME | LASTNAME | AGE  | DOJ        | LEVEL | RANKS | KILLS  |
++----+-----------+----------+------+------------+-------+-------+--------+
+|  1 | MANDARA   | UCHIHA   |   50 | 2022-12-25 |    36 | S     | 100000 |
+|  2 | BLACK     | ZUSTU    |   80 | 2012-12-31 |    15 | S     |  40000 |
+|  3 | OBITO     | UCHIHA   |   35 | 2023-02-14 |    12 | S     |  80000 |
+|  4 | NAGATO    | UZUMAKI  |   30 | 2023-04-12 |    36 | S     |  70000 |
+|  5 | ITACHI    | UCHIHA   |   21 | 2023-07-04 |    12 | S     |  90000 |
++----+-----------+----------+------+------------+-------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT LASTNAME, COUNT(*) FROM AKATSUKI GROUP BY LASTNAME;
++----------+----------+
+| LASTNAME | COUNT(*) |
++----------+----------+
+| UCHIHA   |        3 |
+| ZUSTU    |        1 |
+| UZUMAKI  |        1 |
++----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT MIN(KILLS), MAX(KILLS) FROM HOKAGE;
+ERROR 1054 (42S22): Unknown column 'KILLS' in 'field list'
+mysql> SELECT MIN(KILLS), MAX(KILLS) FROM AKATSUKI;
++------------+------------+
+| MIN(KILLS) | MAX(KILLS) |
++------------+------------+
+|      40000 |     100000 |
++------------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT KILLS MIN(40000), MAX(100000) FROM AKATSUKI GROUP BY KILLS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MIN(40000), MAX(100000) FROM AKATSUKI GROUP BY KILLS' at line 1
+mysql> SELECT KILLS, MIN(VALUE) MAX(VALUE) FROM AKATSUKI GROUP BY KILLS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MAX(VALUE) FROM AKATSUKI GROUP BY KILLS' at line 1
+mysql> SELECT KILLS,
+    -> MIN(40000)
+    -> MAX(100000)
+    -> FROM AKATSUKI
+    -> GROUP BY KILLS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MAX(100000)
+FROM AKATSUKI
+GROUP BY KILLS' at line 3
+mysql> SELECT KILLS,
+    -> MIN(40000),
+    -> MAX(100000)
+    -> FROM AKATSUKI
+    -> GROUP BY KILLS;
++--------+------------+-------------+
+| KILLS  | MIN(40000) | MAX(100000) |
++--------+------------+-------------+
+| 100000 |      40000 |      100000 |
+|  40000 |      40000 |      100000 |
+|  80000 |      40000 |      100000 |
+|  70000 |      40000 |      100000 |
+|  90000 |      40000 |      100000 |
++--------+------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT SUM(KILLS),
+    -> AVG(KILLS)
+    -> FROM AKATSUKI;
++------------+------------+
+| SUM(KILLS) | AVG(KILLS) |
++------------+------------+
+|     380000 | 76000.0000 |
++------------+------------+
+1 row in set (0.03 sec)
+
+mysql> SELECT KILLS,
+    -> SUM(300000),
+    -> AVG(40000)
+    -> FROM AKATSUKI
+    -> GROUP BY KILLS;
++--------+-------------+------------+
+| KILLS  | SUM(300000) | AVG(40000) |
++--------+-------------+------------+
+| 100000 |      300000 | 40000.0000 |
+|  40000 |      300000 | 40000.0000 |
+|  80000 |      300000 | 40000.0000 |
+|  70000 |      300000 | 40000.0000 |
+|  90000 |      300000 | 40000.0000 |
++--------+-------------+------------+
+5 rows in set (0.04 sec)
+
+mysql> SELECT KILLS,
+    -> SUM(VALUE),
+    -> AVG(VALUE),
+    -> FROM AKATSUKI
+    -> GROUP BY KILLS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM AKATSUKI
+GROUP BY KILLS' at line 4
+mysql> SELECT KILLS,
+    -> SUM(VALUE),
+    -> AVG(VALUE)
+    -> FROM AKATSUKI
+    -> GROUP BY KILLS;
+ERROR 1054 (42S22): Unknown column 'VALUE' in 'field list'
+mysql> SELECT KILLS,
+    -> SUM(KILLS),
+    -> AVG(KILLS)
+    -> FROM AKATSUKI
+    -> GROUP BY KILLS;
++--------+------------+-------------+
+| KILLS  | SUM(KILLS) | AVG(KILLS)  |
++--------+------------+-------------+
+| 100000 |     100000 | 100000.0000 |
+|  40000 |      40000 |  40000.0000 |
+|  80000 |      80000 |  80000.0000 |
+|  70000 |      70000 |  70000.0000 |
+|  90000 |      90000 |  90000.0000 |
++--------+------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql>

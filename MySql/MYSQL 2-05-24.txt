@@ -1,0 +1,252 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 46
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW TABLES;
+ERROR 1046 (3D000): No database selected
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| cricket_records    |
+| employees          |
+| information_schema |
+| librarydb          |
+| mysql              |
+| performance_schema |
+| product_details    |
+| sys                |
++--------------------+
+9 rows in set (0.06 sec)
+
+mysql> USE CODEGNAN;
+Database changed
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_codegnan |
++--------------------+
+| codegnan_emp       |
+| mytable            |
++--------------------+
+2 rows in set (0.06 sec)
+
+mysql> CREATE TABLE STUDENT(ID INTEGER, LASTNAME TEXT NOT NULL, FIRSTNAME TEXT NOT NULL);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESC STUDENT;
++-----------+------+------+-----+---------+-------+
+| Field     | Type | Null | Key | Default | Extra |
++-----------+------+------+-----+---------+-------+
+| ID        | int  | YES  |     | NULL    |       |
+| LASTNAME  | text | NO   |     | NULL    |       |
+| FIRSTNAME | text | NO   |     | NULL    |       |
++-----------+------+------+-----+---------+-------+
+3 rows in set (0.05 sec)
+
+mysql> INSERT INTO STUDENT VALUES(1, 'HANKS','PETER');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SELECT * FROM STUDENT;
++------+----------+-----------+
+| ID   | LASTNAME | FIRSTNAME |
++------+----------+-----------+
+|    1 | HANKS    | PETER     |
++------+----------+-----------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO STUDENT VALUES(NULL,'HANKS','PETER');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM STUDENT;
++------+----------+-----------+
+| ID   | LASTNAME | FIRSTNAME |
++------+----------+-----------+
+|    1 | HANKS    | PETER     |
+| NULL | HANKS    | PETER     |
++------+----------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE PERSONS(ID INT NOT NULL, NAME VARCHAR(45) NOT NULL,AGE INT, CITY VARCHAR(25) DEFAULT 'NEWYORK');
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> DESC PERSONS;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | int         | NO   |     | NULL    |       |
+| NAME  | varchar(45) | NO   |     | NULL    |       |
+| AGE   | int         | YES  |     | NULL    |       |
+| CITY  | varchar(25) | YES  |     | NEWYORK |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.04 sec)
+
+mysql> INSERT INTO PERSONS(ID, NAME, AGE, CITY)
+    -> VALUES
+    -> (1,'ROBERT',15,'FLORIDA'),
+    -> (2,'JOSEPH',35,'CALIFORNIA');
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM PERSONS;
++----+--------+------+------------+
+| ID | NAME   | AGE  | CITY       |
++----+--------+------+------------+
+|  1 | ROBERT |   15 | FLORIDA    |
+|  2 | JOSEPH |   35 | CALIFORNIA |
++----+--------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO PERSONS(ID, NAME, AGE, CITY)
+    -> VALUES
+    -> (3,'PETER',15);^C
+mysql> ^C
+mysql> INSERT INTO PERSONS(ID, NAME, AGE)
+    -> VALUES
+    -> (3,'PETER',15);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM PERSONS;
++----+--------+------+------------+
+| ID | NAME   | AGE  | CITY       |
++----+--------+------+------------+
+|  1 | ROBERT |   15 | FLORIDA    |
+|  2 | JOSEPH |   35 | CALIFORNIA |
+|  3 | PETER  |   15 | NEWYORK    |
++----+--------+------+------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE PERSONS1(ID INT NOT NULL PRIMARY KEY,NAME VARCHAR(45) NOT NULL,AGE INT,CITY VARCHAR(25));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESC PERSONS1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | int         | NO   | PRI | NULL    |       |
+| NAME  | varchar(45) | NO   |     | NULL    |       |
+| AGE   | int         | YES  |     | NULL    |       |
+| CITY  | varchar(25) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> INSERT INTO PERSON1(ID, NAME, AGE, CITY)
+    -> VALUES
+    -> (1,'A',15,'HYD'),
+    -> (2,'B',35,'USA'),
+    -> (3,'C',40,'UK');
+ERROR 1146 (42S02): Table 'codegnan.person1' doesn't exist
+mysql> INSERT INTO PERSONS1(ID, NAME, AGE, CITY)
+    -> VALUES
+    -> (1,'A',15,'HYD'),
+    -> (2,'B',35,'USA'),
+    -> (3,'C',40,'UK');
+Query OK, 3 rows affected (0.06 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM PERSONS1;
++----+------+------+------+
+| ID | NAME | AGE  | CITY |
++----+------+------+------+
+|  1 | A    |   15 | HYD  |
+|  2 | B    |   35 | USA  |
+|  3 | C    |   40 | UK   |
++----+------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO PERSONS1(ID, NAME, AGE, CITY)
+    -> VALUES
+    -> (1,'D',25,'HYD');
+ERROR 1062 (23000): Duplicate entry '1' for key 'persons1.PRIMARY'
+mysql> CREATE TABLE SHIRTBRANDS(ID INTEGER,
+    -> BRANDNAME VARCHAR(40) UNIQUE,
+    -> SIZE VARCHAR(30));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> DESC SHIRTBRANDS;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| ID        | int         | YES  |     | NULL    |       |
+| BRANDNAME | varchar(40) | YES  | UNI | NULL    |       |
+| SIZE      | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO SHIRTBRANDS(ID , BRANDNAME, SIZE)
+    -> VALUES
+    -> (1,'PANTALOONS',38),
+    -> (2,'CANTABIL', 40);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM SHIRTBRANDS;
++------+------------+------+
+| ID   | BRANDNAME  | SIZE |
++------+------------+------+
+|    1 | PANTALOONS | 38   |
+|    2 | CANTABIL   | 40   |
++------+------------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO SHIRTBRANDS(ID , BRANDNAME, SIZE)
+    -> VALUES
+    -> (3,'PANTALOONS',42);
+ERROR 1062 (23000): Duplicate entry 'PANTALOONS' for key 'shirtbrands.BRANDNAME'
+mysql> INSERT INTO SHIRTBRANDS(ID , BRANDNAME, SIZE)
+    -> VALUES
+    -> (1,'RAYMONDS',38);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> SELECT * FROM SHIRTBRANDS;
++------+------------+------+
+| ID   | BRANDNAME  | SIZE |
++------+------------+------+
+|    1 | PANTALOONS | 38   |
+|    2 | CANTABIL   | 40   |
+|    1 | RAYMONDS   | 38   |
++------+------------+------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE ANIMALS(ID INT NOT NULL AUTO_INCREMENT,
+    -> NAME CHAR(30) NOT NULL,
+    -> PRIMARY KEY(ID));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> INSERT INTO ANIMALS(NAME) VALUES
+    -> ('TIGER'),('DOG'),('CAT'),('ELEPHANT');
+Query OK, 4 rows affected (0.04 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM ANIMALS;
++----+----------+
+| ID | NAME     |
++----+----------+
+|  1 | TIGER    |
+|  2 | DOG      |
+|  3 | CAT      |
+|  4 | ELEPHANT |
++----+----------+
+4 rows in set (0.00 sec)
+
+mysql> EXIT
+Bye
+
+C:\Users\Nagarjuna>HELLO EVERYONE,
+'HELLO' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Nagarjuna>                                                                                                                   

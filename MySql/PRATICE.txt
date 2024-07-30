@@ -1,0 +1,485 @@
+Microsoft Windows [Version 10.0.22631.3447]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Nagarjuna>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW TABLES;
+ERROR 1046 (3D000): No database selected
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| codegnan           |
+| company            |
+| cricket_records    |
+| employees          |
+| information_schema |
+| librarydb          |
+| mysql              |
+| mysql_practice     |
+| performance_schema |
+| pratice1           |
+| product_details    |
+| sales              |
+| sys                |
++--------------------+
+13 rows in set (0.06 sec)
+
+mysql> CREATE DATABASE HIDDEN_LEAF;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> USE HIDDEN_LEAF;
+Database changed
+mysql> SHOW TABLES
+    -> ;
+Empty set (0.01 sec)
+
+mysql> CREATE TABLE LEAF_EMP(
+    -> EMP_ID INT PRIMARY KEY,
+    -> FNAME VARCHAR(50),
+    -> LNAME VARCHAR(50),
+    -> AGE INT
+    -> , LNAME VARCHAR(50));
+ERROR 1060 (42S21): Duplicate column name 'LNAME'
+mysql> CREATE TABLE LEAF_EMP(
+    -> EMP_ID INT PRIMARY KEY,
+    -> FNAME VARCHAR(50),
+    -> LNAME VARCHAR(50),
+    -> AGE INT
+    -> , LEVEL VARCHAR(50));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> ALTER TABLE LEAF_EMP
+    -> RENAME COLUMN FNAME INTO FIRSTNAME;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INTO FIRSTNAME' at line 2
+mysql> ALTER TABLE LEAF_EMP
+    -> RENAME COLUMN FNAME TO FIRSTNAME;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC LEAF_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LNAME     | varchar(50) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| LEVEL     | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.04 sec)
+
+mysql> ALTER TABLE LEAF_EMP
+    -> CHANGE COLUMN LNAME LASTNAME VARCHAR(60);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC LEAF_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| LEVEL     | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE LEAF_EMP
+    -> ADD DOJ DATE;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC LEAF_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| LEVEL     | varchar(50) | YES  |     | NULL    |       |
+| DOJ       | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> DROP DOJ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DOJ' at line 1
+mysql> DROP LEAF_EMP DOJ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEAF_EMP DOJ' at line 1
+mysql> DROP COLUMN DOJ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COLUMN DOJ' at line 1
+mysql> DROP LEAF_EMP COLUMN DOJ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LEAF_EMP COLUMN DOJ' at line 1
+mysql> ALTER TABLE LEAF_EMP
+    -> MODIIF LEVEL INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MODIIF LEVEL INT' at line 2
+mysql> ALTER TABLE LEAF_EMP
+    -> MODIFY LEVEL INT;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC LEAF_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| LEVEL     | int         | YES  |     | NULL    |       |
+| DOJ       | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE LEAF_EMP
+    -> MODIFY LEVEL VARCHAR(50);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC LEAF_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| LEVEL     | varchar(50) | YES  |     | NULL    |       |
+| DOJ       | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE LEAF_EMP
+    -> ADD LACATION VARCHAR(60) AFTER AGE;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC LEAF_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| LACATION  | varchar(60) | YES  |     | NULL    |       |
+| LEVEL     | varchar(50) | YES  |     | NULL    |       |
+| DOJ       | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE LEAF_EMP
+    -> DROP LOCATION;
+ERROR 1091 (42000): Can't DROP 'LOCATION'; check that column/key exists
+mysql> ALTER TABLE LEAF_EMP
+    -> DROP COLUMN LOCATION,;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> ALTER TABLE LEAF_EMP
+    -> DROP COLUMN LOCATION,
+    -> DROP COLUMN DOJ;
+ERROR 1091 (42000): Can't DROP 'LOCATION'; check that column/key exists
+mysql> ALTER TABLE LEAF_EMP
+    -> DROP COLUMN LOCATION;
+ERROR 1091 (42000): Can't DROP 'LOCATION'; check that column/key exists
+mysql> ALTER TABLE LEAF_EMP
+    -> DROP COLUMN LACATION,
+    -> DROP COLUMN DOJ;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC LEAF_EMP;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMP_ID    | int         | NO   | PRI | NULL    |       |
+| FIRSTNAME | varchar(50) | YES  |     | NULL    |       |
+| LASTNAME  | varchar(60) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| LEVEL     | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER TABLE LEAF_EMP RENAME AKATASUKI;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> SHOW TABLES;
++-----------------------+
+| Tables_in_hidden_leaf |
++-----------------------+
+| akatasuki             |
++-----------------------+
+1 row in set (0.03 sec)
+
+mysql> DROP TABLE AKATASUKI;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DESC AKATASUKI;
+ERROR 1146 (42S02): Table 'hidden_leaf.akatasuki' doesn't exist
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE SSC_EMP(
+    -> ID INT PRIMARY KEY,
+    -> FNAME VARCHAR(50),
+    -> LNAME VARCHAR(50),
+    -> DOJ DATE,
+    -> AGE INT,
+    -> DEPT VARCHAR(50));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> DESC SSC_EMP;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| ID    | int         | NO   | PRI | NULL    |       |
+| FNAME | varchar(50) | YES  |     | NULL    |       |
+| LNAME | varchar(50) | YES  |     | NULL    |       |
+| DOJ   | date        | YES  |     | NULL    |       |
+| AGE   | int         | YES  |     | NULL    |       |
+| DEPT  | varchar(50) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO SSC_EMP(ID, FNAME, LNAME, DOJ, AGE, DEPT)
+    -> VALUES
+    -> (1,'NAGARJUNA','KAKUMANU','2026-04-12',26,'INCOME TAX'),
+    -> (2,'ITACHI','UCHIHA','2025-06-15',28,'CGST INSPECTOR'),
+    -> (3,'OBITO','UCHIHA','2024-02-14',27,'GST INSPECTOR'),
+    -> (4,'MINATO','NAMIKAJIA','2022-01-25','INCOME TAX'),
+    -> (5,'JARAYA','TOADSAGE','2020-01-10','EXAMINAR');
+ERROR 1136 (21S01): Column count doesn't match value count at row 4
+mysql> INSERT INTO SSC_EMP(ID, FNAME, LNAME, DOJ, AGE, DEPT)
+    -> VALUES
+    -> (1,'NAGARJUNA','KAKUMANU','2026-04-12',26,'INCOME TAX'),
+    -> (2,'ITACHI','UCHIHA','2025-06-15',28,'CGST INSPECTOR'),
+    -> (3,'OBITO','UCHIHA','2024-02-14',27,'GST INSPECTOR'),
+    -> (4,'MINATO','NAMIKAJIA','2022-01-25',30,'INCOME TAX'),
+    -> (5,'JARAYA','TOADSAGE','2020-01-10',40,'EXAMINAR');
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+-----------+------------+------+----------------+
+| ID | FNAME     | LNAME     | DOJ        | AGE  | DEPT           |
++----+-----------+-----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU  | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA    | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA    | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | MINATO    | NAMIKAJIA | 2022-01-25 |   30 | INCOME TAX     |
+|  5 | JARAYA    | TOADSAGE  | 2020-01-10 |   40 | EXAMINAR       |
++----+-----------+-----------+------------+------+----------------+
+5 rows in set (0.04 sec)
+
+mysql> DELETE FROM SSC_EMP
+    -> WHERE ID = 4;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   40 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> ADD TO SCC_EMP
+    -> WHERE 4,'YELLOW','FLASH','2022-01-25',27,'FLASH') AFTER ID = 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD TO SCC_EMP
+WHERE 4,'YELLOW','FLASH','2022-01-25',27,'FLASH') AFTER ID = 3' at line 1
+mysql> INSERT INTO SSC_EMP(ID, FNAME, LNAME, DOJ, AGE, DEPT)
+    -> VALUES
+    -> (4,'YELLOW','FLASH','2022-01-25',27,'FLASH') AFTER ID = 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AFTER ID = 3' at line 3
+mysql> INSERT INTO SSC_EMP(ID, FNAME, LNAME, DOJ, AGE, DEPT)
+    -> VALUES
+    -> (4,'YELLOW','FLASH','2022-01-25',27,'FLASH');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH    | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   40 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> START TRANSACTION ISOLATION LEVEL READ COMMITTED;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ISOLATION LEVEL READ COMMITTED' at line 1
+mysql> -- LOCK
+mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> START TRASACTION ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRASACTION' at line 1
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM SSC_EMP WHERE ID = 5 FOR UPDATE;
++----+--------+----------+------------+------+----------+
+| ID | FNAME  | LNAME    | DOJ        | AGE  | DEPT     |
++----+--------+----------+------------+------+----------+
+|  5 | JARAYA | TOADSAGE | 2020-01-10 |   40 | EXAMINAR |
++----+--------+----------+------------+------+----------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE SSC_EMP SET AGE = 50 WHERE ID = 5;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH    | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   50 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH    | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   50 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE SSC_EMP SET AGE = 53 WHERE ID = 5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH    | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   53 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH    | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   50 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE SSC_EMP SET AGE = 40 WHERE ID = 5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH    | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   40 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> SAVEPOINT MY_SAVEPOINT;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH    | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   40 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO SAVEPOINT MY_SAVEPOINT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+----------+------------+------+----------------+
+| ID | FNAME     | LNAME    | DOJ        | AGE  | DEPT           |
++----+-----------+----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA   | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA   | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH    | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | TOADSAGE | 2020-01-10 |   40 | EXAMINAR       |
++----+-----------+----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE SSC_EMP  LNAME = 'MOUNTSAGE' WHERE ID = 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 'MOUNTSAGE' WHERE ID = 5' at line 1
+mysql> UPDATE FROM SSC_EMP  LNAME = 'MOUNTSAGE' WHERE ID = 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM SSC_EMP  LNAME = 'MOUNTSAGE' WHERE ID = 5' at line 1
+mysql> UPDATE  SSC_EMP SET LNAME = 'MOUNTSAGE' WHERE ID = 5;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM SSC_EMP;
++----+-----------+-----------+------------+------+----------------+
+| ID | FNAME     | LNAME     | DOJ        | AGE  | DEPT           |
++----+-----------+-----------+------------+------+----------------+
+|  1 | NAGARJUNA | KAKUMANU  | 2026-04-12 |   26 | INCOME TAX     |
+|  2 | ITACHI    | UCHIHA    | 2025-06-15 |   28 | CGST INSPECTOR |
+|  3 | OBITO     | UCHIHA    | 2024-02-14 |   27 | GST INSPECTOR  |
+|  4 | YELLOW    | FLASH     | 2022-01-25 |   27 | FLASH          |
+|  5 | JARAYA    | MOUNTSAGE | 2020-01-10 |   40 | EXAMINAR       |
++----+-----------+-----------+------------+------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> ^C
+mysql>
+
