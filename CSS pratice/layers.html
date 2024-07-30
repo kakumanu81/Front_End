@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Layers</title>
+        <style>
+            .a{
+                background-color: aquamarine;
+                height: 150px;
+                width: 250px;
+                border: dotted;
+                position: absolute;
+                z-index: 9;
+
+            }
+            .b{
+                background-color: navy;
+                height: 150px;
+                width: 250px;
+                border: dotted;
+                position: absolute;
+                top: 50px;
+                left: 60px;
+                z-index: 5;
+
+            }
+            .c{
+                background-color: black;
+                height: 150px;
+                width: 250px;
+                border: dotted;
+                position: absolute;
+                top: 100px;
+                left: 100px;
+                z-index: 7;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="a"></div>
+        <div class="b"></div>
+        <div class="c"></div>
+    </body>
+</html>

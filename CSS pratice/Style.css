@@ -1,0 +1,19 @@
+#Box{
+    color:blueviolet;
+    font-size: 50px;
+    background-color: azure;
+    padding: 30px;
+    text-align: center;
+    border: solid greenyellow;
+    border-width: 20px;
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+
+}
+body{
+     background-color: black;
+     border: solid orange;
+
+     
+}

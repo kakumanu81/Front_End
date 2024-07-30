@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flex</title>
+        <style>
+            .abc{
+                background-color: black;
+                margin: 30px;
+                text-align: center;
+                align-content: center;
+                display: flex;
+               /* flex-wrap: wrap;
+                flex-direction: row;*/
+                flex-flow: wrap row;
+                justify-content: left;
+
+
+
+            
+                
+            }
+            .abc div{
+                flex: auto;
+            }
+            .a{
+                align-items: center;
+                background-color: lightgreen;
+                border: solid;
+                width:100px;
+                height:100px;
+                font-size: 20px;
+                margin: 20px;
+            }
+            .b{
+                background-color: lightpink;
+                border: solid;
+                width:100px;
+                height:100px;
+                font-size: 20px;
+                margin: 20px;
+                align-items: center;
+            }
+            .c{
+                background-color: lightskyblue;
+                border: solid;
+                width:100px;
+                height:100px;
+                font-size: 20px;
+                margin: 20px;
+                align-items: center;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="abc">
+        <div class="a">a</div>
+        <div class="b">b</div>
+        <div class="c">c</div>
+        <div class="a">d</div>
+        <div class="b">e</div>
+        <div class="c">f</div> 
+        <div class="a">g</div>
+        <div class="b">h</div>
+        <div class="c">i</div> 
+        <div class="a">j</div>
+        <div class="b">k</div>
+        <div class="c">l</div> 
+        <div class="a">m</div>
+        <div class="b">n</div>
+        <div class="c">o</div> 
+        <div class="a">p</div>
+        <div class="b">q</div>
+        <div class="c">r</div>
+        </div>         
+    </body>
+</html>
