@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+     <head>
+     	<title>Meta Data</title>
+        <meta charset="utf-8">
+        <meta name="author" content="Nagarjuna">
+		<meta name="description" content="Basic Page">
+		<meta name="keywords" content="HTML,Metatags">
+		<meta name="revised" content="Nagarjuna",20/05/2024>
+		<meta name="viewport" content="width=divice-width,initial-scale=1.0">
+		<meta http-equiv="refresh" content="100">
+
+		<style>
+			body{
+				animation-name:s1 ;
+				animation-duration: 1s;
+				animation-iteration-count: infinite;
+				animation-fill-mode: both;
+
+			}
+			@keyframes s1{
+				0%{background-color: darkred;}
+				15%{background-color: white;}
+				25%{background-color: lightgreen;}
+				35%{background-color: violet;}
+				50%{background-color: lightblue;}
+				65%{background-color: indigo;}
+				75%{background-color: orange;}
+				100%{background-color: yellow;}
+			}
+			div{
+				position: absolute;
+				top: 200px;
+				left: 400px;
+			}
+			 .s2 :hover{
+              height: 300px;
+              width: 200px;
+               }
+
+           .s3 :hover{
+            height: 300px;
+            width: 200px;
+
+            }
+
+
+		</style>
+     </head>
+     <body>
+     	
+     	<div>
+     	<table border="1" cellpadding="4px" width="800px" heigth="400px" bgcolor="black" bordercolor="black" align="center">
+
+     		<thead><tr bgcolor="SteelBlue"><td align="center">Login</td><td align="center">Register</td></tr></thead>
+     		<tfoot><tr bgcolor="SteelBlue"><td colspan="2" align="center">&copy;Copyrigth Issused</td></tr></tfoot>
+     		<tbody>
+
+
+
+     		<tr>
+     			
+     			
+     			<td bgcolor="wheat" class="s2">
+     				
+     				<form align="center" action="loginlinks.html" method="post" target="_blank">
+     					<label for="username">Username:<br></label>
+     					<input type="text" name="username" placeholder="username" required><br>
+     					
+     					<label for="password">Password:<br></label>
+     					<input type="password" name="password" placeholder="password" required><br>
+     					<hr width="0" height = "20px">
+     					<button type="Submit">Login</button>
+     					
+     				</form>
+     			</td>
+     		
+     			<td bgcolor="wheat" class="s3">
+     				
+     				<form align="center" action="register.html" method="post" target="_blank">
+     					<label for="Name">Enter Name:<br></label>
+     					<input type="text" name="Name" value="" placeholder="Name" required><br>
+
+     					
+     					<label for="email">Enter Email-id:<br></label>
+     					<input type="email" id="email" name="email" placeholder="email" required><br>
+     					
+     					<label for="password">Password:<br></label>
+     					<input type="password" name="password" placeholder="password" required><br>
+     					
+     					<label for="password">Re enter password:<br></label>
+     					<input type="password" name="password" placeholder="password" required><br>
+
+     					<hr width="0" height = "20px">
+     					<button type="SignIn">Register</button>
+
+     				</form>
+     			</td>
+     		
+     		</tr>
+     	</tbody>
+     		
+     	</table>
+     </div>
+     </body>
+</html>
