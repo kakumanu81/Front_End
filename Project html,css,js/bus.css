@@ -1,0 +1,110 @@
+body{
+    background-color: rgb(55, 55, 237);
+    width: 100%;
+    height: 100%;
+}
+.n{
+    background-color: rgb(55, 55, 237);
+    border: solid rgb(55, 55, 237);;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    text-align: center;
+    top: 10px;
+    margin: 0%;
+    
+}
+.n1{
+    background-color: rgb(55, 55, 237);
+    text-align: center;
+    align-content: center;
+    
+}
+.n2{
+    background-color: rgb(55, 55, 237);
+    text-align: center;
+    align-content: center;
+    
+}
+.n3{
+    background-color: rgb(55, 55, 237);
+    text-align: center;
+    align-content: center;
+
+}
+.n4{
+    background-color: rgb(55, 55, 237);
+    text-align: center;
+    align-content: center;
+
+}
+.n5{
+    background-color: rgb(55, 55, 237);    
+    text-align: center;
+    align-content: center;
+
+}
+.n6{
+    background-color: rgb(55, 55, 237);    
+    text-align: center;
+    padding: 10px;
+}
+.k{
+    position: relative;
+    z-index: 1;
+    
+    
+}
+.k1{
+    background-color: rgb(240, 191, 100);
+    color: black;
+    position: absolute;
+    width: 600px;
+    border: solid rgb(59, 65, 81);
+    border-radius: 40px;
+    align-content: center;
+    z-index: 2;
+    height: 50px;
+    text-align: center;
+    padding: 50px;
+    top: 350px;
+    left: 400px;
+}
+.a{
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+.b{
+    width: 100px;
+    height: 55px;
+}
+.e{
+    text-align: center;
+    font-style: oblique;
+    position: absolute;
+    z-index: 3;
+    font-size: 30px;
+    align-content: center;
+    left: 200px;
+    top: 50px;    
+}
+.l img{
+    width: 160px;
+    height: 200px;
+
+}
+.l{
+    color: white;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    z-index: 4;
+    position: relative; 
+    top: 800px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(89, 153, 217);
+    border: solid rgb(83, 154, 224);
+    border-radius: 30px;
+
+}
+
